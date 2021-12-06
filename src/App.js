@@ -6,34 +6,44 @@ function App() {
   // const [feedURL, setFeedURL] = useState([]);
   const [feed, setFeed] = useState([]);
 
-  const rssFeed = "https://feed.podbean.com/deltaee/feed.xml"
+  const rssFeed = "https://feeds.simplecast.com/tOjNXec5"
 
   useEffect(() => {
     fetch(rssFeed)
     .then(res => res.text())
-    .then(str => {setFeed(str)})
-    }, [])
+    .then(str => {
+      const parser = new window.DOMParser();
+      const data = parser.parseFromString(str, "text/xml");
+      console.log(data);
+      const itemNodeList = data.querySelectorAll('item');
+      console.log(itemNodeList);
+      
+      
 
+      // 
+      // itemNodeList.forEach(el = {
 
-    // .then(str => {
-    //   const parser = new window.DOMParser();
-    //   var data = parser.parseFromString(str, "text/xml");
-    //   const itemList = data.querySelectorAll('item');
-    //   const items=[];
-    //     itemList.forEach(el => {
-    //       items.push(
-    //         el.querySelector('title').innerHTML,
-    //       )
-    //     })
-    //   })
-    //   .then((items) => {setFeed(items)})
-    // }, [])
+      // })
+      setFeed([...feed, itemNodeList])
+      console.log(feed);
+      // items.push(itemList);
+      // setFeed(items)
+      // .then((itemList) => {setFeed(itemList)}
+      // const items=[];
+      //   itemList.forEach(el => {
+      //     items.push(
+      //       el.childNodes.title,
+      //     )
+      //   })
+      // })
+    })
+  }, [])
     
-  // const titleList = feed.map((feedItem, index) => {
-  //   return <li key={index}>
-  //     {feedItem}
-  //   </li>
-  // })
+  const titleList = feed.map((feedItem, index) => {
+    return <li key={index}>
+      {feedItem}
+    </li>
+  })
   
 
   return (
@@ -41,6 +51,7 @@ function App() {
     <p>Hello podcast fan</p>
     </>
   );
+
 }
 
 export default App;

@@ -23,9 +23,10 @@ function App() {
           title: el.querySelector('title').innerHTML
         })
       })
-      console.log(items)
-      }, [])
-  })
+    setFeed(items);
+    }) 
+  }, [rssFeed])
+ 
     
       
 

@@ -13,19 +13,28 @@ function App() {
     .then(res => res.text())
     .then(str => {
       const parser = new window.DOMParser();
-      const data = parser.parseFromString(str, "text/xml");
+      const data = parser.parseFromString(str, 'text/xml');
       console.log(data);
       const itemNodeList = data.querySelectorAll('item');
       console.log(itemNodeList);
-      
+      const items=[];
+      itemNodeList.forEach(el => {
+        items.push({
+          title: el.querySelector('title').innerHTML
+        })
+      })
+      console.log(items)
+      }, [])
+  })
+    
       
 
       // 
       // itemNodeList.forEach(el = {
 
       // })
-      setFeed([...feed, itemNodeList])
-      console.log(feed);
+      // setFeed([...feed, itemNodeList])
+      // console.log(feed);
       // items.push(itemList);
       // setFeed(items)
       // .then((itemList) => {setFeed(itemList)}
@@ -36,8 +45,8 @@ function App() {
       //     )
       //   })
       // })
-    })
-  }, [])
+  //   })
+  // }, [])
     
   const titleList = feed.map((feedItem, index) => {
     return <li key={index}>

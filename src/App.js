@@ -20,12 +20,13 @@ function App() {
       const items=[];
       itemNodeList.forEach(el => {
         items.push({
-          title: el.querySelector('title').innerHTML
+          title: el.querySelector('title').innerHTML,
+          link: el.querySelector('link').innerHTML
         })
       })
     setFeed(items);
     }) 
-  }, [rssFeed])
+  }, [])
  
     
       
@@ -50,15 +51,24 @@ function App() {
   // }, [])
     
   const titleList = feed.map((feedItem, index) => {
-    return <li key={index}>
-      {feedItem}
-    </li>
+      return <div key={index}>
+                <li>{feedItem.title}</li>
+            </div>
   })
+  
+  
+  
+  // feed.map((feedItem, index) => {
+  //   return <li key={index}>
+  //     {feedItem}
+  //   </li>
+  // })
   
 
   return (
     <>
     <p>Hello podcast fan</p>
+    <ul>{titleList}</ul>
     </>
   );
 

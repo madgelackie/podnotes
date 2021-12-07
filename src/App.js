@@ -18,10 +18,11 @@ function App() {
       const itemNodeList = data.querySelectorAll('item');
       console.log(itemNodeList);
       const items=[];
-      itemNodeList.forEach(el => {
+      itemNodeList.forEach(item => {
         items.push({
-          title: el.querySelector('title').innerHTML,
-          link: el.querySelector('link').innerHTML
+          title: item.querySelector('title').innerHTML,
+          mp3: item.querySelector('enclosure').getAttribute('url'),
+          // description: item.querySelector('itunes\\:summary.innerHTML')
         })
       })
     setFeed(items);
@@ -31,45 +32,34 @@ function App() {
     
       
 
-      // 
-      // itemNodeList.forEach(el = {
-
-      // })
-      // setFeed([...feed, itemNodeList])
-      // console.log(feed);
-      // items.push(itemList);
-      // setFeed(items)
-      // .then((itemList) => {setFeed(itemList)}
-      // const items=[];
-      //   itemList.forEach(el => {
-      //     items.push(
-      //       el.childNodes.title,
-      //     )
-      //   })
-      // })
-  //   })
-  // }, [])
-    
   const titleList = feed.map((feedItem, index) => {
-      return <div key={index}>
-                <li>{feedItem.title}</li>
+      return <div id="feed-items" value={index} key={index} onClick={handleEpisodeSelect}>
+                <li>{feedItem.title} </li>
             </div>
   })
-  
-  
-  
-  // feed.map((feedItem, index) => {
-  //   return <li key={index}>
-  //     {feedItem}
-  //   </li>
-  // })
+
+  const handleEpisodeSelect = (event) => {
+    // mount audio player component in 'main' grid-area
+    const setEpisodeToPlay = feed[event.target.value];
+  }
+
   
 
   return (
-    <>
-    <p>Hello podcast fan</p>
-    <ul>{titleList}</ul>
-    </>
+    <div>
+      <div id="container-grid">
+        <div id="nav-area">
+          <h3>Nav bar will go here</h3>
+        </div>
+        <div id="feed-box">
+          <ul>{titleList}</ul>
+        </div>
+        <div id="main">
+          <p>player and notes will go here</p>
+        </div>
+        {selectedEpisode ? <EpisodePlayer episodeToPlay={episodeToPlay}/>:null}
+      </div>
+    </div>
   );
 
 }

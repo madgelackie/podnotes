@@ -1,11 +1,15 @@
 import './App.css';
 import { useEffect, useState } from 'react';
+import EpisodePlayer from './components/EpisodePlayer';
+import ChannelFeed from './components/ChannelFeed';
 
 function App() {
 
   // const [feedURL, setFeedURL] = useState([]);
   const [feed, setFeed] = useState([]);
+  const [episodeToPlay, setEpisodeToPlay] = useState([]);
 
+  // this will eventually be replaced by state for selectedChannel, where user selects from their list of channels
   const rssFeed = "https://feeds.simplecast.com/tOjNXec5"
 
   useEffect(() => {
@@ -28,36 +32,18 @@ function App() {
     setFeed(items);
     }) 
   }, [])
- 
-    
-      
 
-  const titleList = feed.map((feedItem, index) => {
-      return <div id="feed-items" value={index} key={index} onClick={handleEpisodeSelect}>
-                <li>{feedItem.title} </li>
-            </div>
-  })
-
-  const handleEpisodeSelect = (event) => {
-    // mount audio player component in 'main' grid-area
-    const setEpisodeToPlay = feed[event.target.value];
-  }
-
+  const onEpisodeSelect = (episode) => {
+      setEpisodeToPlay(episode)
+    }
   
-
   return (
     <div>
       <div id="container-grid">
-        <div id="nav-area">
-          <h3>Nav bar will go here</h3>
-        </div>
-        <div id="feed-box">
-          <ul>{titleList}</ul>
-        </div>
-        <div id="main">
-          <p>player and notes will go here</p>
-        </div>
-        {selectedEpisode ? <EpisodePlayer episodeToPlay={episodeToPlay}/>:null}
+        <ChannelFeed feed={feed} onEpisodeSelect={onEpisodeSelect}/>    
+      </div>
+      <div>
+        {episodeToPlay ? <EpisodePlayer episode={episodeToPlay}/>:null}
       </div>
     </div>
   );

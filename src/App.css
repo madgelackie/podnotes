@@ -1,9 +1,9 @@
 #container-grid {
   display: grid;
   grid-template-areas:
-    'nav-area nav-area'
-    'feed-box main'
-    'feed-box main'
+    'nav-area nav-area',
+    'feed-box main',
+    'feed-box main',
     'footer footer';
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 8fr 1fr;

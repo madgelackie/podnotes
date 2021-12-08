@@ -8,7 +8,8 @@ const ChannelFeed = ({feed, onEpisodeSelect}) => {
 
     const titleList = feed.map((feedItem, index) => {
         return <div id="feed-items" key={index}>
-                <li value={index} onClick={handleEpisodeSelect}>{feedItem.title} </li>
+                <li value={index}>{feedItem.title} </li>
+                <button value={index} onClick={handleEpisodeSelect}>Listen</button>
         </div>
     })
 

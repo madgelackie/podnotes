@@ -2,10 +2,16 @@ import React from 'react';
 
 const EpisodePlayer = ({episode}) => {
 
+    const getCurrentTime = () => {
+        const bookmark = document.getElementById("episode")
+        return console.log(bookmark.currentTime)
+    }
+
     return (
-        <div>
+        <div id="main">
         <p>{episode.title}</p>
-        <audio controls controlsList="nodownload" src={episode.mp3}></audio>
+        <audio id="episode" controls controlsList="nodownload" src={episode.mp3}></audio>
+        <button onClick={getCurrentTime}>Bookmark</button>
         </div>
     )
 }

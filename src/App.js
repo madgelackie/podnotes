@@ -8,9 +8,10 @@ function App() {
   // const [feedURL, setFeedURL] = useState([]);
   const [feed, setFeed] = useState([]);
   const [episodeToPlay, setEpisodeToPlay] = useState([]);
+  const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
 
   // this will eventually be replaced by state for selectedChannel, where user selects from their list of channels
-  const rssFeed = "https://feeds.simplecast.com/tOjNXec5"
+  const rssFeed = "https://outrageandoptimism.libsyn.com/rss"
 
   useEffect(() => {
     fetch(rssFeed)
@@ -37,13 +38,19 @@ function App() {
       setEpisodeToPlay(episode)
     }
   
+  const onBookmarkClicked = (bookmark) => {
+      const episodeBookmarkList = [...episodeBookmarks, bookmark];
+      setEpisodeBookmarks(episodeBookmarkList)
+  }
+  
+
   return (
     <div>
       <div id="container-grid">
         <ChannelFeed feed={feed} onEpisodeSelect={onEpisodeSelect}/>    
       </div>
       <div>
-        {episodeToPlay ? <EpisodePlayer episode={episodeToPlay}/>:null}
+        {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null}
       </div>
     </div>
   );

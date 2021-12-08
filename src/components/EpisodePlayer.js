@@ -4,6 +4,7 @@ const EpisodePlayer = ({episode}) => {
 
     const getCurrentTime = () => {
         const bookmark = document.getElementById("episode")
+        bookmark.pause()
         return console.log(bookmark.currentTime)
     }
 

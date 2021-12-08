@@ -2,6 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import EpisodePlayer from './components/EpisodePlayer';
 import ChannelFeed from './components/ChannelFeed';
+import NoteBox from './components/NoteBox';
 
 function App() {
 
@@ -43,7 +44,7 @@ function App() {
       setEpisodeBookmarks(episodeBookmarkList)
   }
   
-
+// change NoteBox ternary to open notebox when bookmark button clicked ie something in Bookmark state?
   return (
     <div>
       <div id="container-grid">
@@ -51,6 +52,7 @@ function App() {
       </div>
       <div>
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null}
+        {episodeToPlay ? <NoteBox episodeBookmarks={episodeBookmarks}/>:null}
       </div>
     </div>
   );

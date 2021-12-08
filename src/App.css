@@ -38,6 +38,8 @@
 }
 
 #main{
+  display: flex;
+  flex-direction: row;
   background-color: aqua;
   grid-area: main;
 }
@@ -45,6 +47,11 @@
 #footer{
   background-color: yellow;
   grid-area: footer;
+}
+
+#note-box{
+    border: 2px solid rgb(0, 94, 255);
+
 }
 
 

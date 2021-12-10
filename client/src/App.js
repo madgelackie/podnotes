@@ -22,6 +22,10 @@ function App() {
       const data = parser.parseFromString(str, 'text/xml');
       console.log(data);
       const itemNodeList = data.querySelectorAll('item');
+      const feedURL = data.querySelector('channel');
+      console.log(feedURL);
+      const image = feedURL.getAttribute('url');
+      console.log(image);
       console.log(itemNodeList);
       const items=[];
       itemNodeList.forEach(item => {

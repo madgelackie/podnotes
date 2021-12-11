@@ -11,7 +11,7 @@ const EpisodePlayer = ({episode, onBookmarkClicked}) => {
 
 // additional div included between "main" div below, in order to make a flex child element
     return (
-        <div id="main">
+        <div>
             <div>
                 <p>{episode.title}</p>
                 <audio id="episode" controls controlsList="nodownload" src={episode.mp3} autoPlay></audio>

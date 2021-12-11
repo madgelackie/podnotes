@@ -8,7 +8,7 @@ const NoteBox = ({episodeBookmarks}) => {
     })
 
     return (
-        <div id="main">
+        <div>
             <div id="note-box">
                 <ul>{printToNoteBox}</ul>
             </div>

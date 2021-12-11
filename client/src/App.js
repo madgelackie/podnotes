@@ -50,11 +50,9 @@ function App() {
   
 // change NoteBox ternary to open notebox when bookmark button clicked ie something in Bookmark state?
   return (
-    <div>
-      <div id="container-grid">
-        <ChannelFeed feed={feed} onEpisodeSelect={onEpisodeSelect}/>    
-      </div>
-      <div>
+    <div id="container-grid">
+      <ChannelFeed feed={feed} onEpisodeSelect={onEpisodeSelect}/>    
+      <div id="main">
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null}
         {episodeToPlay ? <NoteBox episodeBookmarks={episodeBookmarks}/>:null}
       </div>

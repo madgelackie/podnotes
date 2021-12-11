@@ -14,7 +14,7 @@ const ChannelFeed = ({feed, onEpisodeSelect}) => {
     })
 
     return(
-        <div id="feed-box">
+        <div>
             <ul>{titleList}</ul>
         </div>
         

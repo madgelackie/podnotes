@@ -52,12 +52,14 @@ function App() {
   return (
     <div>
     <div id="container-grid">
-      <ChannelFeed feed={feed} onEpisodeSelect={onEpisodeSelect}/>
-    </div>    
+      <div id="feed">
+        <ChannelFeed feed={feed} onEpisodeSelect={onEpisodeSelect}/>
+      </div>   
       <div id="main">
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null}
         {episodeToPlay ? <NoteBox episodeBookmarks={episodeBookmarks}/>:null}
       </div>
+    </div>
     </div>
   );
 

@@ -1,30 +1,31 @@
 #container-grid {
   display: grid;
   grid-template-areas:
-    'nav-area nav-area',
-    'feed-box main',
-    'feed-box main',
-    'footer footer';
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 8fr 1fr;
+    'feed main',
+    'feed main';
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
 }
 
-#nav-area {
+#nav {
   background-color: green;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   width: 100%;
-  grid-area: nav-area;
+  grid-area: nav;
 }
 
-#feed-box{
+#feed{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   row-gap: 10px;
-  grid-area: feed-box;
-  position: relative;
+  grid-area: feed;
+  position: absolute;
   top: 0;
+  height: 100%;
+  width: 50%;
+  overflow: scroll; 
 }
 
 #feed-items{
@@ -38,15 +39,14 @@
 
 #main{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
   background-color: aqua;
   grid-area: main;
 }
 
-#footer{
-  background-color: yellow;
-  grid-area: footer;
-}
+
 
 #note-box{
     border: 2px solid rgb(0, 94, 255);

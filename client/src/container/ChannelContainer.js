@@ -1,7 +1,14 @@
+import ChannelInput from "../components/ChannelInputComponents/ChannelInput";
+import ChannelList from "../components/ChannelInputComponents/ChannelList";
+
 const ChannelContainer = () => {
 
     return (
-        <p>Channel input and list will go here</p>
+        <>
+            <ChannelInput />
+            <br></br>
+            <ChannelList />
+        </>
     )
 
 

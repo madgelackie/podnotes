@@ -22,7 +22,6 @@
   flex-direction: column;
   flex-wrap: wrap;
   row-gap: 10px;
-  background-color: pink;
   grid-area: feed-box;
   position: relative;
   top: 0;

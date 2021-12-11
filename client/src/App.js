@@ -8,7 +8,7 @@ function App() {
 
   // const [feedURL, setFeedURL] = useState([]);
   const [feed, setFeed] = useState([]);
-  const [episodeToPlay, setEpisodeToPlay] = useState([]);
+  const [episodeToPlay, setEpisodeToPlay] = useState(null);
   const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
 
   // this will eventually be replaced by state for selectedChannel, where user selects from their list of channels
@@ -50,8 +50,10 @@ function App() {
   
 // change NoteBox ternary to open notebox when bookmark button clicked ie something in Bookmark state?
   return (
+    <div>
     <div id="container-grid">
-      <ChannelFeed feed={feed} onEpisodeSelect={onEpisodeSelect}/>    
+      <ChannelFeed feed={feed} onEpisodeSelect={onEpisodeSelect}/>
+    </div>    
       <div id="main">
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null}
         {episodeToPlay ? <NoteBox episodeBookmarks={episodeBookmarks}/>:null}

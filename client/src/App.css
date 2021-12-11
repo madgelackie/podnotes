@@ -1,19 +1,19 @@
 #container-grid {
   display: grid;
   grid-template-areas:
-    'feed main',
-    'feed main';
+    'feed' 'player',
+    'feed' 'note-box';
   grid-template-columns: 50% 50%;
   grid-template-rows: 50% 50%;
 }
-
+/* 
 #nav {
   background-color: green;
   position: absolute;
   z-index: 1;
   width: 100%;
   grid-area: nav;
-}
+} */
 
 #feed{
   display: flex;
@@ -37,21 +37,30 @@
   border: 3px solid tomato;
 }
 
-#main{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 50%;
+/* #main{
+  display: grid;
+  grid-template-areas: 
+    'player'
+    'note-box';
+  grid-row: 50% 50%;
   background-color: aqua;
   grid-area: main;
+} */
+
+#player{
+  grid-area: player;
+  height: 50%;
 }
 
-
-
 #note-box{
+    grid-area: note-box;
     border: 2px solid rgb(0, 94, 255);
 
 }
+
+
+
+
 
 
 

@@ -8,11 +8,12 @@ const NoteBox = ({episodeBookmarks}) => {
     })
 
     return (
-        <div>
+        <div id="container-grid">
             <div id="note-box">
-                <ul>{printToNoteBox}</ul>
+            <ul>{printToNoteBox}</ul>
             </div>
         </div>
+        
     )
 
 }

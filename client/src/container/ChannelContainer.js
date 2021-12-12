@@ -1,13 +1,15 @@
 import ChannelInput from "../components/ChannelInputComponents/ChannelInput";
 import ChannelList from "../components/ChannelInputComponents/ChannelList";
 import { useEffect, useState } from 'react';
+import Request from "../services/ChannelFeedsService"
 
 const ChannelContainer = () => {
 
-    const [newUrl, setNewUrl] = useState([]);
+    const [allUrl, setAllUrl] = useState([]);
 
     const onUrlSubmit = (url) => {
-        setNewUrl(url)
+        const addingToList = [...allUrl, url];
+        setAllUrl(addingToList);
     }
 
     return (

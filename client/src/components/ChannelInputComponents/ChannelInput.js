@@ -5,15 +5,17 @@ const ChannelInput = ({onUrlSubmit}) => {
 
     const [urlInput, setUrlInput] = useState(null);
 
+    const handleUrlChange = (event) => {
+        setUrlInput(event.target.value);
+    }
+
     const handleUrlSubmit = (event) => {
         event.preventDefault();
         onUrlSubmit(urlInput);
         setUrlInput("");
     }
 
-    const handleUrlChange = (event) => {
-        setUrlInput(event.target.value);
-    }
+
 
     
 

@@ -5,7 +5,7 @@ import Request from "../services/helper"
 
 const ChannelContainer = () => {
 
-    const [allUrl, setAllUrl] = useState([]);
+    const [newUrl, setNuewUrl] = useState([]);
     const [savedFeeds, setSavedFeeds] = useState([]);
 
     // const onUrlSubmit = (url) => {
@@ -24,7 +24,8 @@ const ChannelContainer = () => {
     const onUrlSubmit = function(feedUrl){
         const request = new Request();
         request.post("/api/channels", feedUrl)
-        }
+        
+        };
     // .then(() => window.location = "/channels")
 
 
@@ -32,7 +33,7 @@ const ChannelContainer = () => {
         <>
             <ChannelInput onUrlSubmit={onUrlSubmit} />
             <br></br>
-            <ChannelList />
+            <ChannelList savedFeeds={savedFeeds}/>
         </>
     )
 

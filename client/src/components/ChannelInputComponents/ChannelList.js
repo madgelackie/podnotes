@@ -1,9 +1,18 @@
-const ChannelList = () => {
+const ChannelList = ({savedFeeds}) => {
+
+    const showList = savedFeeds.map((feed, index) => {
+        return (
+            <li key={index}>
+                {feed.channelUrl}
+            </li>
+        )
+
+    })
 
     return (
         <>
         <ul>
-            <li>list goes here</li>
+           {showList}
         </ul>
         </>
     )

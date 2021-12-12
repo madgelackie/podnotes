@@ -1,28 +1,25 @@
 import './App.css';
 import MainContainer from './container/MainContainer';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ChannelContainer from './container/ChannelContainer';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
 function App() {
 
   return (
-    <>
     <Router>
       <Switch>
-      <Route path="/feed" exact>
-        <MainContainer />
-      </Route>
-      <Route path="/channels/new" exact>
-        <ChannelContainer />
-      </Route>
-      <Route path="/channels" exact>
-      </Route>
-    </Switch>
-    </Router>
-    </>
+        <Route path="/feed" component={MainContainer}/>
+        <Route path="/channels" component={ChannelContainer}/>
+        <Route path='*' component={NotFound} />
+      </Switch>
+    </Router>  
   );
 
+}
+
+function NotFound(){
+  return <p>Nothing to see here...</p>;
 }
 
 export default App;

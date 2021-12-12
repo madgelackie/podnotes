@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Request from '../../services/helper';
+
 
 const ChannelInput = ({onUrlSubmit}) => {
 
@@ -15,10 +15,6 @@ const ChannelInput = ({onUrlSubmit}) => {
         onUrlSubmit(urlInput);
         setUrlInput("");
     }
-
-
-
-    
 
     return (
         <>  

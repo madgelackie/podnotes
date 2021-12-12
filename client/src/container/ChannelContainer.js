@@ -2,6 +2,7 @@ import ChannelInput from "../components/ChannelInputComponents/ChannelInput";
 import ChannelList from "../components/ChannelInputComponents/ChannelList";
 import { useEffect, useState } from 'react';
 import Request from "../services/helper"
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 const ChannelContainer = () => {
 
@@ -30,11 +31,19 @@ const ChannelContainer = () => {
 
 
     return (
+        
         <>
-            <ChannelInput onUrlSubmit={onUrlSubmit} />
-            <br></br>
-            <ChannelList savedFeeds={savedFeeds}/>
+            
+            <Route exact path= "/channels" render={() => {
+                return <ChannelList savedFeeds={savedFeeds}/> 
+            }}/>
+            <Route exact path= "/channels/new" render={() => {
+                return <ChannelInput onUrlSubmit={onUrlSubmit}/>
+            }}/>
+            
         </>
+        
+        
     )
 
 

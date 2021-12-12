@@ -1,7 +1,7 @@
 import ChannelInput from "../components/ChannelInputComponents/ChannelInput";
 import ChannelList from "../components/ChannelInputComponents/ChannelList";
 import { useEffect, useState } from 'react';
-import Request from "../services/ChannelFeedsService"
+import Request from "../services/helper"
 
 const ChannelContainer = () => {
 
@@ -12,7 +12,7 @@ const ChannelContainer = () => {
     //     const addingToList = [...allUrl, url];
     //     setAllUrl(addingToList);
     // }
-   
+
 // this function is making a request to the api, and the resposne is held in channelPromise
 // and then this is used to set the state savedFeeds 
     useEffect(() => {
@@ -23,10 +23,8 @@ const ChannelContainer = () => {
 
     const onUrlSubmit = function(feedUrl){
         const request = new Request();
-        request.post(feedUrl)
-        .then(() => console.log("success"))
-        
-    }
+        request.post("/api/channels", feedUrl)
+        }
     // .then(() => window.location = "/channels")
 
 

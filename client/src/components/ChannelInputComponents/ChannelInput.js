@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Request from '../../services/ChannelFeedsService';
+import Request from '../../services/helper';
 
 const ChannelInput = ({onUrlSubmit}) => {
 

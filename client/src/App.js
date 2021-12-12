@@ -13,8 +13,10 @@ function App() {
       <Route path="/feed" exact>
         <MainContainer />
       </Route>
-      <Route path="/channels" exact>
+      <Route path="/channels/new" exact>
         <ChannelContainer />
+      </Route>
+      <Route path="/channels" exact>
       </Route>
     </Switch>
     </Router>

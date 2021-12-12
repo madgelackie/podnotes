@@ -7,8 +7,8 @@ const ChannelList = ({savedFeeds, onFeedSelected}) => {
     } 
 
     const showList = savedFeeds.map((feed, index) => {
-        return <div>
-            <li key={index}>{feed.channelUrl}</li>
+        return <div key={index}>
+            <li>{feed.channelUrl}</li>
             <button value={index} onClick={handleSelect}>Select</button>
             </div>
         

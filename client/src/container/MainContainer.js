@@ -3,20 +3,21 @@ import { useEffect, useState } from 'react';
 import EpisodePlayer from '../components/MainPageComponents/EpisodePlayer';
 import ChannelFeed from '../components/MainPageComponents/ChannelFeed';
 import NoteBox from '../components/MainPageComponents/NoteBox';
+import ChannelContainer from './ChannelContainer';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-const MainContainer = () => {
+const MainContainer = ({selectedFeed}) => {
 
 // const [feedURL, setFeedURL] = useState([]);
 const [feed, setFeed] = useState([]);
 const [episodeToPlay, setEpisodeToPlay] = useState(null);
 const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
 
-// this will eventually be replaced by state for selectedChannel, where user selects from their list of channels
+// this will eventually be replaced by state for selectedFeed, where user selects from their list of channels
 const rssFeed = "https://outrageandoptimism.libsyn.com/rss"
 
 useEffect(() => {
-fetch(rssFeed)
+fetch(selectedFeed)
 .then(res => res.text())
 .then(str => {
     const parser = new window.DOMParser();
@@ -25,8 +26,6 @@ fetch(rssFeed)
     const itemNodeList = data.querySelectorAll('item');
     const feedURL = data.querySelector('channel');
     console.log(feedURL);
-    const image = feedURL.getAttribute('url');
-    console.log(image);
     console.log(itemNodeList);
     const items=[];
     itemNodeList.forEach(item => {
@@ -38,7 +37,7 @@ fetch(rssFeed)
     })
     setFeed(items);
     }) 
-}, [])
+}, [selectedFeed])
 
 const onEpisodeSelect = (episode) => {
     setEpisodeToPlay(episode)

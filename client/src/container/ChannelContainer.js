@@ -9,7 +9,6 @@ import ChannelFeed from "../components/MainPageComponents/ChannelFeed";
 const ChannelContainer = () => {
 
     const [savedFeeds, setSavedFeeds] = useState([]);
-    const [feedDetails, setFeedDetails] = useState([]);
     const [selectedFeed, setSelectedFeed] = useState(null);
     const [feed, setFeed] = useState([]);
 
@@ -51,38 +50,6 @@ const ChannelContainer = () => {
     }}
     // console.log(tryingLoop())
 
-    // const tryingLoop = function () {
-    //     if(savedFeeds){
-    //     var prepForFeedLoop = [...savedFeeds];
-    //     for (const feed of prepForFeedLoop){
-    //                         fetch(feed.channelUrl)
-    //                         .then(res => res.text())
-    //                         .then(str => {
-    //                         const parser = new window.DOMParser();
-    //                         const data = parser.parseFromString(str, 'text/xml');
-    //                         console.log(data);
-    //                         const itemNodeList = data.querySelectorAll('item');
-    //                         const feedURL = data.querySelector('channel');
-    //                         console.log(feedURL);
-    //                         const image = feedURL.getAttribute('url');
-    //                         console.log(image);
-    //                         console.log(itemNodeList);
-    //                         const items=[];
-    //                         itemNodeList.forEach(item => {
-    //                         items.push({
-    //                         title: item.querySelector('title').innerHTML,
-    //                         mp3: item.querySelector('enclosure').getAttribute('url'),
-    //                         })
-    //                         })
-    //                         setFeedDetails(items);
-    //                     }) 
-    //                     }
-
-    // }}
-
-    // useEffect(() => {
-    //     requestAll()
-    // }, [])
 
     const onUrlSubmit = function(feedUrl){
         const request = new Request();
@@ -106,8 +73,8 @@ const ChannelContainer = () => {
             <Route exact path= "/channels/new" render={() => {
                 return <ChannelInput onUrlSubmit={onUrlSubmit}/>
             }}/>
-            <Route exact path= "/feed/selected" render={() => {
-                return <ChannelFeed selectedFeed={selectedFeed} />
+            <Route exact path= "/channel/feed" render={() => {
+                return <ChannelFeed feed={feed} />
             }}/>
             
         </>

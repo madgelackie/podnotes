@@ -64,10 +64,17 @@ const ChannelContainer = () => {
         .then(() => window.location = "/channels")
     };
 
+    const onFeedSelected = (feedUrl) => {
+        setSelectedFeed(feedUrl);
+    }
+
+    if(!savedFeeds){
+        return null
+    }
     return (
         <>
             <Route exact path= "/channels" render={() => {
-                return <ChannelList savedFeeds={savedFeeds}/> 
+                return <ChannelList savedFeeds={savedFeeds} onFeedSelected={onFeedSelected}/> 
             }}/>
             <Route exact path= "/channels/new" render={() => {
                 return <ChannelInput onUrlSubmit={onUrlSubmit}/>

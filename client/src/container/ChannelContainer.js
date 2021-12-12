@@ -8,86 +8,51 @@ const ChannelContainer = () => {
 
     const [savedFeeds, setSavedFeeds] = useState([]);
     const [feedDetails, setFeedDetails] = useState([]);
+    const [selectedFeed, setSelectedFeed] = useState([]);
 
-// this function is making a request to the api, and the resposne is held in channelPromise
-// and then this is used to set the state savedFeeds 
+// this function is making a request to the api, and the resposne is used to set the state savedFeeds 
     useEffect(() => {
         const request = new Request();
         request.get("/api/channels")
         .then((data) => {setSavedFeeds(data)});
         }, []);
 
+        // this starts causing an error if we add .channelUrl or other property of feed object, once we refresh the page. Works before refreshing the page though. 
+        const tryingLoop = function () {
+            if(savedFeeds){
+            var prepForFeedLoop = [...savedFeeds];
+            console.log(prepForFeedLoop[0])
+        }}
+        console.log(tryingLoop())
 
-    const tryingLoop = function () {
-        if(savedFeeds){
-        var prepForFeedLoop = [...savedFeeds];
-        console.log(prepForFeedLoop[0])
-    }}
-
-   console.log(tryingLoop())
-        
-    // const feedInfo = [];
-    // console.log(prepForFeedLoop[0].channelUrl)
-    // const extractUrlTest = prepForFeedLoop.forEach(object => feedInfo.push(object.channelUrl));
-    // console.log(feedDetails)
-    // const requestAll = (prepForFeedLoop) =>{
+    // const tryingLoop = function () {
+    //     if(savedFeeds){
+    //     var prepForFeedLoop = [...savedFeeds];
     //     for (const feed of prepForFeedLoop){
-    //                 fetch(feed)
-    //                 .then(res => res.text())
-    //                 .then(str => {
-    //                 const parser = new window.DOMParser();
-    //                 const data = parser.parseFromString(str, 'text/xml');
-    //                 console.log(data);
-    //                 const itemNodeList = data.querySelectorAll('item');
-    //                 const feedURL = data.querySelector('channel');
-    //                 console.log(feedURL);
-    //                 const image = feedURL.getAttribute('url');
-    //                 console.log(image);
-    //                 console.log(itemNodeList);
-    //                 const items=[];
-    //                 itemNodeList.forEach(item => {
-    //                 items.push({
-    //                 title: item.querySelector('title').innerHTML,
-    //                 mp3: item.querySelector('enclosure').getAttribute('url'),
-    //                 })
-    //                 })
-    //                 setFeedDetails(items);
-    //             }) 
-    //             }}
-            
-    
+    //                         fetch(feed.channelUrl)
+    //                         .then(res => res.text())
+    //                         .then(str => {
+    //                         const parser = new window.DOMParser();
+    //                         const data = parser.parseFromString(str, 'text/xml');
+    //                         console.log(data);
+    //                         const itemNodeList = data.querySelectorAll('item');
+    //                         const feedURL = data.querySelector('channel');
+    //                         console.log(feedURL);
+    //                         const image = feedURL.getAttribute('url');
+    //                         console.log(image);
+    //                         console.log(itemNodeList);
+    //                         const items=[];
+    //                         itemNodeList.forEach(item => {
+    //                         items.push({
+    //                         title: item.querySelector('title').innerHTML,
+    //                         mp3: item.querySelector('enclosure').getAttribute('url'),
+    //                         })
+    //                         })
+    //                         setFeedDetails(items);
+    //                     }) 
+    //                     }
 
-
-    // const extractUrlTest = prepForFeedLoop.forEach(object => console.log(channelUrl));
-    // console.log(extractUrlTest);
-    
-
-// the following function will make a network call to each of the saved RSS Feeds, to access the xml document, extract the required information and hold that in an object that we will then interact with. 
-    // const requestAll = (savedFeeds) => {
-    //     for (const feed of savedFeeds){
-    //         fetch(feed)
-    //         .then(res => res.text())
-    //         .then(str => {
-    //         const parser = new window.DOMParser();
-    //         const data = parser.parseFromString(str, 'text/xml');
-    //         console.log(data);
-    //         const itemNodeList = data.querySelectorAll('item');
-    //         const feedURL = data.querySelector('channel');
-    //         console.log(feedURL);
-    //         const image = feedURL.getAttribute('url');
-    //         console.log(image);
-    //         console.log(itemNodeList);
-    //         const items=[];
-    //         itemNodeList.forEach(item => {
-    //         items.push({
-    //         title: item.querySelector('title').innerHTML,
-    //         mp3: item.querySelector('enclosure').getAttribute('url'),
-    //         })
-    //         })
-    //         setFeedDetails(items);
-    //     }) 
-    //     }
-    // }
+    // }}
 
     // useEffect(() => {
     //     requestAll()

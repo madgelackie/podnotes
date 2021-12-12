@@ -23,7 +23,7 @@ const ChannelContainer = () => {
 
     const onUrlSubmit = function(feedUrl){
         const request = new Request();
-        request.post("/api/channels", feedUrl)
+        request.post(feedUrl)
         .then(() => console.log("success"))
         
     }

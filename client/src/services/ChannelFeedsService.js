@@ -8,8 +8,8 @@ class Request {
         .then(res => res.json());
     }
 
-    post(url, payload){
-        return fetch("http://localhost:8080/", {
+    post(payload){
+        return fetch("http://localhost:8080/api/channels", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)

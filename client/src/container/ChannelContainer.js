@@ -17,9 +17,9 @@ const ChannelContainer = () => {
 // and then this is used to set the state savedFeeds 
     useEffect(() => {
         const request = new Request();
-        const channelPromise = request.get()
+        const channelPromise = request.get("/api/channels")
         .then((data) => {setSavedFeeds(data)})
-    })
+    }, []);
 
     const onUrlSubmit = function(feedUrl){
         const request = new Request();

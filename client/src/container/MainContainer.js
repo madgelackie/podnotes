@@ -1,8 +1,8 @@
 
 import { useEffect, useState } from 'react';
-import EpisodePlayer from "../components/EpisodePlayer"
-import ChannelFeed from "../components/ChannelFeed"
-import NoteBox from "../components/NoteBox"
+import EpisodePlayer from '../components/MainPageComponents/EpisodePlayer';
+import ChannelFeed from '../components/MainPageComponents/ChannelFeed';
+import NoteBox from '../components/MainPageComponents/NoteBox';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 const MainContainer = () => {

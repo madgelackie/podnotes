@@ -10,6 +10,7 @@ const ChannelContainer = () => {
 
     const [savedFeeds, setSavedFeeds] = useState([]);
     const [selectedFeed, setSelectedFeed] = useState(null);
+    const [selectedFeedid, setSelectedFeedId] = useState(null);
     const [feed, setFeed] = useState([]);
 
 // this function is making a request to the api, and the resposne is used to set the state savedFeeds 
@@ -57,9 +58,12 @@ const ChannelContainer = () => {
         .then(() => window.location = "/channels")
     };
 
+// function to create state of what channel has been selected, to extract only the (url property as this is required for the fetch in the useEffect) and save the channel id so that episodes can be saved with this detail in DB.
     const onFeedSelected = (feedUrl) => {
-        const urlOnly = feedUrl.channelUrl
+        const urlOnly = feedUrl.channelUrl;
+        const selectedFeedid = feedUrl.id;
         setSelectedFeed(urlOnly);
+        setSelectedFeedId(selectedFeedid);
     }
 
     if(!savedFeeds){
@@ -73,7 +77,7 @@ const ChannelContainer = () => {
             <Route exact path= "/channels/new" render={() => {
                 return <ChannelInput onUrlSubmit={onUrlSubmit}/>
             }}/>
-            <Route exact path= "/channel/feed" render={() => {
+            <Route exact path= "/channel/:id" render={() => {
                 return <ChannelFeed feed={feed} />
             }}/>
             

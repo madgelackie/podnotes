@@ -61,7 +61,7 @@ const ChannelContainer = () => {
         const selectedFeedId = feedUrl.id;
         setSelectedFeed(urlOnly);
         setSelectedFeedId(selectedFeedId);
-        window.location = "/channel/feed"
+        // window.location = "/channel/feed"
         // also want to pass through the savedFeeds element that was selected as this will have the episodes and bookmarks saved
     }
 

@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import EpisodePlayer from '../components/MainPageComponents/EpisodePlayer';
-import ChannelFeed from '../components/MainPageComponents/ChannelFeed';
+import ChannelFeed from '../components/ChannelInputComponents/ChannelFeed';
 import NoteBox from '../components/MainPageComponents/NoteBox';
 import ChannelContainer from './ChannelContainer';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';

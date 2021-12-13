@@ -1,9 +1,13 @@
-const ChannelList = ({savedFeeds, onFeedSelected}) => {
+import { useEffect, useState } from 'react';
+import ChannelFeed from './ChannelFeed';
 
+const ChannelList = ({savedFeeds}) => {
+
+    const [selectedFeed, setSelectedFeed] = useState(null);
 
     const handleSelect = (event) => {
         const chosenFeed = savedFeeds[event.target.value];
-        onFeedSelected(chosenFeed)
+        setSelectedFeed(chosenFeed)
     } 
 
     const showList = savedFeeds.map((feed, index) => {
@@ -17,7 +21,10 @@ const ChannelList = ({savedFeeds, onFeedSelected}) => {
 
     return (
         <>
+        <div>
         <ul>{showList}</ul>
+        </div>
+        {selectedFeed ? <ChannelFeed selectedFeed={selectedFeed}/>:null}
         </>
     )
 

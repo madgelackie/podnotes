@@ -3,12 +3,13 @@ import ChannelList from "../components/ChannelInputComponents/ChannelList";
 import { useEffect, useState } from 'react';
 import Request from "../services/helper"
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import ChannelFeed from "../components/MainPageComponents/ChannelFeed";
+import ChannelFeed from "../components/ChannelInputComponents/ChannelFeed";
 
 
 const ChannelContainer = () => {
 
     const [savedFeeds, setSavedFeeds] = useState([]);
+    const [selectedFeedObject, setSelectedFeedObject] = useState([]);
     const [selectedFeed, setSelectedFeed] = useState(null);
     const [selectedFeedId, setSelectedFeedId] = useState(null);
     const [feed, setFeed] = useState([]);
@@ -41,13 +42,12 @@ const ChannelContainer = () => {
             }, [selectedFeed])
 
 // this starts causing an error if we add .channelUrl or other property of feed object, once we refresh the page. Worksbefore refreshing the page though. 
-    const tryingLoop = function () {
-        if(savedFeeds){
-        var prepForFeedLoop = [...savedFeeds];
-        console.log(prepForFeedLoop[0])
-    }}
+    // const tryingLoop = function () {
+    //     if(savedFeeds){
+    //     var prepForFeedLoop = [...savedFeeds];
+    //     console.log(prepForFeedLoop[0])
+    // }}
     // console.log(tryingLoop())
-
 
     const onUrlSubmit = function(feedUrl){
         const request = new Request();
@@ -55,15 +55,20 @@ const ChannelContainer = () => {
         .then(() => window.location = "/channels")
     };
 
+    // const onFeedSelected = (feedUrl) => {
+    //     setSelectedFeedObject(feedUrl);
+    // };
+
 // function to create state of what channel has been selected, to extract only the (url property as this is required for the fetch in the useEffect) and save the channel id so that episodes can be saved with this detail in DB.
-    const onFeedSelected = (feedUrl) => {
-        const urlOnly = feedUrl.channelUrl;
-        const selectedFeedId = feedUrl.id;
-        setSelectedFeed(urlOnly);
-        setSelectedFeedId(selectedFeedId);
-        window.location = "/channels/" + selectedFeedId;
-        // also want to pass through the savedFeeds element that was selected as this will have the episodes and bookmarks saved
-    }
+    // const onFeedSelected = (feedUrl) => {
+    //     const urlOnly = feedUrl.channelUrl;
+    //     const selectedFeedId = feedUrl.id;
+    //     setSelectedFeed(urlOnly);
+    //     setSelectedFeedId(selectedFeedId);
+    //     setSelectedFeedObject(feedUrl);
+    // //     window.location = "/channels/" + selectedFeedId;
+    //     // also want to pass through the savedFeeds element that was selected as this will have the episodes and bookmarks saved
+    // }
 
     if(!savedFeeds){
         return null
@@ -71,11 +76,9 @@ const ChannelContainer = () => {
     return (
         <>
             <Route exact path= "/channels" render={() => {
-                return <ChannelList savedFeeds={savedFeeds} onFeedSelected={onFeedSelected}/> 
+                return <ChannelList savedFeeds={savedFeeds}/> 
             }}/>
-            <Route exact path= "/channels/:id" render={() => {
-                return <ChannelFeed feed={feed} />
-            }}/>
+            
             <Route exact path= "/channels/new" render={() => {
                 return <ChannelInput onUrlSubmit={onUrlSubmit}/>
             }}/>

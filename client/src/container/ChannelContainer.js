@@ -23,6 +23,8 @@ const ChannelContainer = () => {
         .then(() => window.location = "/channels")
     };
 
+
+    
     if(!savedFeeds){
         return null
     }

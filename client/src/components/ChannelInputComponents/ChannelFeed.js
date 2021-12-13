@@ -1,5 +1,6 @@
 import {useEffect, useState } from 'react';
 import EpisodePlayer from './EpisodePlayer';
+import Request from '../../services/helper';
 
 
 const ChannelFeed = ({selectedFeed}) => {
@@ -7,6 +8,7 @@ const ChannelFeed = ({selectedFeed}) => {
     const [selectedFeedUrl, setSelectedFeedUrl] = useState(null);
     const [feed, setFeed] = useState([]);
     const [episodeToPlay, setEpisodeToPlay] = useState(null);
+    const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
 
     useEffect(() => {
         const urlOnly = selectedFeed.channelUrl;
@@ -20,13 +22,15 @@ const ChannelFeed = ({selectedFeed}) => {
         const parser = new window.DOMParser();
         const data = parser.parseFromString(str, 'text/xml');
         console.log(data);
+        const getTitle = data.querySelector('title');
+        console.log(getTitle);
         const itemNodeList = data.querySelectorAll('item');
         console.log(itemNodeList);
         const items=[];
         itemNodeList.forEach(item => {
         items.push({
-        title: item.querySelector('title').innerHTML,
-        mp3: item.querySelector('enclosure').getAttribute('url'),
+        episodeTitle: item.querySelector('title').innerHTML,
+        episodeURL: item.querySelector('enclosure').getAttribute('url'),
                     })
                 })
         setFeed(items);
@@ -37,15 +41,28 @@ const ChannelFeed = ({selectedFeed}) => {
     const handleEpisodeSelect = (event) => {
         const chosenEpisode = feed[event.target.value];
         setEpisodeToPlay(chosenEpisode);
+        // const request = new Request();
+        // request.post("/api/episodes", chosenEpisode)
     }
+
+    // const onUrlSubmit = function(feedUrl){
+    //     const request = new Request();
+    //     request.post("/api/channels", feedUrl)  
+    //     .then(() => window.location = "/channels")
+    // };
 
     const titleList = feed.map((feedItem, index) => {
         return <div id="feed-items" key={index}>
-                <li value={index}>{feedItem.title} </li>
+                <li value={index}>{feedItem.episodeTitle} </li>
                 <button value={index} onClick={handleEpisodeSelect}>Listen</button>
         </div>
     })
 
+// hook for retreiving bookmark details from NoteBox component
+    const onBookmarkClicked = (bookmark) => {
+        const episodeBookmarkList = [...episodeBookmarks, bookmark];
+        setEpisodeBookmarks(episodeBookmarkList)
+    }       
     // <div>
     // {/* {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null} */}
     // {/* {episodeToPlay ? <NoteBox episodeBookmarks={episodeBookmarks}/>:null} */}
@@ -56,7 +73,7 @@ const ChannelFeed = ({selectedFeed}) => {
         <div>
             <ul>{titleList}</ul>
         </div>
-        {episodeToPlay ? <EpisodePlayer episode={episodeToPlay}/>:null}
+        {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null}
         </>
     )
     

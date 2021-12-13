@@ -13,12 +13,16 @@ const ChannelFeed = ({feed, onEpisodeSelect}) => {
         </div>
     })
 
+    if(feed){
     return(
         <div>
             <ul>{titleList}</ul>
         </div>
         
-    )
+    )}
+    else{
+        return <p>Loading...</p>
+    }
 
 }
 

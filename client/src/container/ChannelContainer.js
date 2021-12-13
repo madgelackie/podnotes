@@ -3,7 +3,7 @@ import ChannelList from "../components/ChannelInputComponents/ChannelList";
 import { useEffect, useState } from 'react';
 import Request from "../services/helper"
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import ChannelFeed from "../components/ChannelInputComponents/ChannelFeed";
+import ChannelFeed from "../components/MainPageComponents/ChannelFeed";
 
 
 const ChannelContainer = () => {
@@ -61,7 +61,7 @@ const ChannelContainer = () => {
         const selectedFeedId = feedUrl.id;
         setSelectedFeed(urlOnly);
         setSelectedFeedId(selectedFeedId);
-        // window.location = "/channel/feed"
+        window.location = "/channels/" + selectedFeedId;
         // also want to pass through the savedFeeds element that was selected as this will have the episodes and bookmarks saved
     }
 
@@ -73,13 +73,13 @@ const ChannelContainer = () => {
             <Route exact path= "/channels" render={() => {
                 return <ChannelList savedFeeds={savedFeeds} onFeedSelected={onFeedSelected}/> 
             }}/>
+            <Route exact path= "/channels/:id" render={() => {
+                return <ChannelFeed feed={feed} />
+            }}/>
             <Route exact path= "/channels/new" render={() => {
                 return <ChannelInput onUrlSubmit={onUrlSubmit}/>
             }}/>
-            <Route exact path= "/channel/feed" render={() => {
-                // props = {selectedFeedId};
-                return <ChannelFeed feed={feed} />
-            }}/>
+            
             
         </>
     )

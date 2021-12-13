@@ -1,5 +1,6 @@
 import {useEffect, useState } from 'react';
 import EpisodePlayer from './EpisodePlayer';
+import NoteBox from './NoteBox';
 import Request from '../../services/helper';
 
 
@@ -74,6 +75,7 @@ const ChannelFeed = ({selectedFeed}) => {
             <ul>{titleList}</ul>
         </div>
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null}
+        {episodeBookmarks ? <NoteBox episodeBookmarks={episodeBookmarks}/>:null}
         </>
     )
     

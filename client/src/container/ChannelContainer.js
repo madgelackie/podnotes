@@ -28,15 +28,12 @@ const ChannelContainer = () => {
                 const data = parser.parseFromString(str, 'text/xml');
                 console.log(data);
                 const itemNodeList = data.querySelectorAll('item');
-                const feedURL = data.querySelector('channel');
-                console.log(feedURL);
                 console.log(itemNodeList);
                 const items=[];
                 itemNodeList.forEach(item => {
                 items.push({
-                    title: item.querySelector('title').innerHTML,
-                    mp3: item.querySelector('enclosure').getAttribute('url'),
-                    // description: item.querySelector('itunes\\:summary.innerHTML')
+                title: item.querySelector('title').innerHTML,
+                mp3: item.querySelector('enclosure').getAttribute('url'),
                 })
                 })
                 setFeed(items);

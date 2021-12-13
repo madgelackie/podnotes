@@ -10,8 +10,10 @@ const ChannelInput = ({onUrlSubmit}) => {
         setUrlInput(event.target.value);
     }
 
+// This function needs to prepare the data going up the ContainerCompenent. We will extract the channel title from a fetch to the rss feed.
     const handleUrlSubmit = (event) => {
         event.preventDefault();
+        console.log(urlInput);
         onUrlSubmit(urlInput);
         setUrlInput("");
     }

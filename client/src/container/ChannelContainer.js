@@ -3,14 +3,14 @@ import ChannelList from "../components/ChannelInputComponents/ChannelList";
 import { useEffect, useState } from 'react';
 import Request from "../services/helper"
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import ChannelFeed from "../components/MainPageComponents/ChannelFeed";
+import ChannelFeed from "../components/ChannelInputComponents/ChannelFeed";
 
 
 const ChannelContainer = () => {
 
     const [savedFeeds, setSavedFeeds] = useState([]);
     const [selectedFeed, setSelectedFeed] = useState(null);
-    const [selectedFeedid, setSelectedFeedId] = useState(null);
+    const [selectedFeedId, setSelectedFeedId] = useState(null);
     const [feed, setFeed] = useState([]);
 
 // this function is making a request to the api, and the resposne is used to set the state savedFeeds 
@@ -58,9 +58,11 @@ const ChannelContainer = () => {
 // function to create state of what channel has been selected, to extract only the (url property as this is required for the fetch in the useEffect) and save the channel id so that episodes can be saved with this detail in DB.
     const onFeedSelected = (feedUrl) => {
         const urlOnly = feedUrl.channelUrl;
-        const selectedFeedid = feedUrl.id;
+        const selectedFeedId = feedUrl.id;
         setSelectedFeed(urlOnly);
-        setSelectedFeedId(selectedFeedid);
+        setSelectedFeedId(selectedFeedId);
+        window.location = "/channel/feed"
+        // also want to pass through the savedFeeds element that was selected as this will have the episodes and bookmarks saved
     }
 
     if(!savedFeeds){
@@ -74,7 +76,8 @@ const ChannelContainer = () => {
             <Route exact path= "/channels/new" render={() => {
                 return <ChannelInput onUrlSubmit={onUrlSubmit}/>
             }}/>
-            <Route exact path= "/channel/:id" render={() => {
+            <Route exact path= "/channel/feed" render={() => {
+                // props = {selectedFeedId};
                 return <ChannelFeed feed={feed} />
             }}/>
             

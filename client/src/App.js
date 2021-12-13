@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/feed" component={MainContainer}/>
+        {/* <Route path="/feed" component={MainContainer}/> */}
         <Route path="/channels" component={ChannelContainer}/>
         <Route path='*' component={NotFound} />
       </Switch>

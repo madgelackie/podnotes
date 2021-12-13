@@ -6,7 +6,7 @@ import NoteBox from '../components/MainPageComponents/NoteBox';
 import ChannelContainer from './ChannelContainer';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-const MainContainer = ({selectedFeed}) => {
+const MainContainer = ({}) => {
 
 // const [feedURL, setFeedURL] = useState([]);
 const [feed, setFeed] = useState([]);
@@ -17,7 +17,7 @@ const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
 const rssFeed = "https://outrageandoptimism.libsyn.com/rss"
 
 useEffect(() => {
-fetch(selectedFeed)
+fetch(rssFeed)
 .then(res => res.text())
 .then(str => {
     const parser = new window.DOMParser();
@@ -37,7 +37,7 @@ fetch(selectedFeed)
     })
     setFeed(items);
     }) 
-}, [selectedFeed])
+}, [])
 
 const onEpisodeSelect = (episode) => {
     setEpisodeToPlay(episode)

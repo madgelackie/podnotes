@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ChannelFeed from './ChannelFeed';
 
 const ChannelList = ({savedFeeds}) => {
@@ -8,6 +9,7 @@ const ChannelList = ({savedFeeds}) => {
     const handleSelect = (event) => {
         const chosenFeed = savedFeeds[event.target.value];
         setSelectedFeed(chosenFeed)
+        // window.location = "/channels/" + chosenFeed.id;
     } 
 
     const showList = savedFeeds.map((feed, index) => {
@@ -17,6 +19,15 @@ const ChannelList = ({savedFeeds}) => {
             </div>
         
     })
+
+    // window.location = "/channels/" + selectedFeedId;
+    // <Route exact path= "/channels/:id" render={() => {
+    //     return <ChannelFeed selectedFeedObject={selectedFeedObject} />
+    // }}/>
+    // <Route exact path="/channels/:id" render={() => {
+    //     return <ChannelFeed selectedFeed={selectedFeed} />
+    // }}/>
+
 
 
     return (

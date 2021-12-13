@@ -37,17 +37,17 @@ const ChannelFeed = ({selectedFeed}) => {
     //     onEpisodeSelect(chosenEpisode)
     // }
 
-    // const titleList = feed.map((feedItem, index) => {
-    //     return <div id="feed-items" key={index}>
-    //             <li value={index}>{feedItem.title} </li>
-    //             <button value={index} onClick={handleEpisodeSelect}>Listen</button>
-    //     </div>
-    // })
+    const titleList = feed.map((feedItem, index) => {
+        return <div id="feed-items" key={index}>
+                <li value={index}>{feedItem.title} </li>
+                <button value={index}>Listen</button>
+        </div>
+    })
 
     
     return(
         <div>
-            <ul>{selectedFeed.channelUrl}</ul>
+            <ul>{titleList}</ul>
         </div>
         
     )

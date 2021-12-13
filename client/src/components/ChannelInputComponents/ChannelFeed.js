@@ -10,6 +10,15 @@ const ChannelFeed = ({selectedFeed}) => {
     const [feed, setFeed] = useState([]);
     const [episodeToPlay, setEpisodeToPlay] = useState(null);
     const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
+    const [episodeDBReady, setEpisodeDBReady] = useState(
+        {
+            episodeTitle: "",
+            episodeURL: "",
+            channel: null 
+        }
+    )
+
+
 
     useEffect(() => {
         const urlOnly = selectedFeed.channelUrl;
@@ -42,6 +51,19 @@ const ChannelFeed = ({selectedFeed}) => {
     const handleEpisodeSelect = (event) => {
         const chosenEpisode = feed[event.target.value];
         setEpisodeToPlay(chosenEpisode);
+        const newObject = {episodeTitle: chosenEpisode.episodeTitle,
+        episodeURL: chosenEpisode.episodeURL,
+        channel: selectedFeed }
+        setEpisodeDBReady(newObject)
+        
+
+
+        // const episodeName = feed[event.target.episodeTitle];
+        // const episodeMp3 = feed[event.target.episodeURL];
+        // const tempEpisode = [...episodeDBReady];
+        // tempEpisode.episodeTitle = episodeName;
+        // tempEpisode.episodeURL = episodeMp3;
+        // setEpisodeDBReady(tempEpisode)
     }
 
 // rendering instructions for this (ChannelFeed) component.

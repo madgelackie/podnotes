@@ -1,17 +1,26 @@
 
-const NoteBox = ({episodeBookmarks}) => {
+const NoteBox = ({makeEpisodeBookmark}) => {
 
-    const printToNoteBox = episodeBookmarks.map((bookmark, index) => {
-        return <div key={index}>
-            <li value={index}>{bookmark.time}: {bookmark.title}</li>
-        </div>
-    })
+    // const printToNoteBox = makeEpisodeBookmark.map((bookmark, index) => {
+    //     return <div key={index}>
+    //         <form>
+    //         <li value={index}>{bookmark.time}: {bookmark.title}</li>
+    //         <label htmlFor="writeNote" ></label>
+    //         <textarea id="note" name="note" rows="5" cols="100" placeholder="add note here">
+
+    //         </textarea>
+    //         </form>
+    //     </div>
+    // })
 
     return (
-        <div id="container-grid">
-            <div id="note-box">
-            <ul>{printToNoteBox}</ul>
-            </div>
+        <div>
+            <form>
+            <p>Timestamp: {makeEpisodeBookmark.time}</p>
+            <label htmlFor="writeNote" ></label>
+            <textarea id="note" name="note" rows="5" cols="100" placeholder="add note here">
+            </textarea>
+            </form>
         </div>
         
     )

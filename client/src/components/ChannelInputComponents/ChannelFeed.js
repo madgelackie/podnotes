@@ -9,7 +9,7 @@ const ChannelFeed = ({selectedFeed}) => {
     const [selectedFeedUrl, setSelectedFeedUrl] = useState(null);
     const [feed, setFeed] = useState([]);
     const [episodeToPlay, setEpisodeToPlay] = useState(null);
-    const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
+    const [makeEpisodeBookmark, setMakeEpisodeBookmark] = useState([]);
     const [episodeDBReady, setEpisodeDBReady] = useState(
         {
             episodeTitle: "",
@@ -69,19 +69,25 @@ const ChannelFeed = ({selectedFeed}) => {
         </div>
     })
 
-// hook for retreiving bookmark details from NoteBox component
-    const onBookmarkClicked = (bookmark) => {
-        const episodeBookmarkList = [...episodeBookmarks, bookmark];
-        setEpisodeBookmarks(episodeBookmarkList)
-    }       
+// hook for retreiving bookmark details from EpisodePlayer component
+    // const onBookmarkClicked = (bookmark) => {
+    //     const episodeBookmarkList = [...episodeBookmarks, bookmark];
+    //     setEpisodeBookmarks(episodeBookmarkList)
+    // }       
 
+    const onBookmarkClicked = (bookmark) => {
+        setMakeEpisodeBookmark(bookmark)
+    }    
+
+    
     return(
         <>
         <div>
             <ul>{titleList}</ul>
         </div>
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null}
-        {episodeBookmarks ? <NoteBox episodeBookmarks={episodeBookmarks}/>:null}
+
+        {makeEpisodeBookmark ? <NoteBox makeEpisodeBookmark={makeEpisodeBookmark}/>:null}
         </>
     )
     

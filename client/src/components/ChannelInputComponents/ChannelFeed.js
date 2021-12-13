@@ -18,8 +18,6 @@ const ChannelFeed = ({selectedFeed}) => {
         }
     )
 
-
-
     useEffect(() => {
         const urlOnly = selectedFeed.channelUrl;
         setSelectedFeedUrl(urlOnly);
@@ -47,24 +45,21 @@ const ChannelFeed = ({selectedFeed}) => {
             }) 
         }, [selectedFeedUrl])
 
-// episode selection occurs in this (ChannelFeed) component.
+// episode selection occurs in this (ChannelFeed) component. This function also creates an Episode object ready for posting to database.
     const handleEpisodeSelect = (event) => {
         const chosenEpisode = feed[event.target.value];
         setEpisodeToPlay(chosenEpisode);
         const newObject = {episodeTitle: chosenEpisode.episodeTitle,
         episodeURL: chosenEpisode.episodeURL,
-        channel: selectedFeed }
-        setEpisodeDBReady(newObject)
-        
+        channel: selectedFeed };
+        setEpisodeDBReady(newObject);
+        // onEpisodeSelect();
+        }
 
-
-        // const episodeName = feed[event.target.episodeTitle];
-        // const episodeMp3 = feed[event.target.episodeURL];
-        // const tempEpisode = [...episodeDBReady];
-        // tempEpisode.episodeTitle = episodeName;
-        // tempEpisode.episodeURL = episodeMp3;
-        // setEpisodeDBReady(tempEpisode)
-    }
+    useEffect(() => {
+        const request = new Request();
+        request.post("/api/episodes", episodeDBReady);  
+    }, [episodeDBReady])
 
 // rendering instructions for this (ChannelFeed) component.
     const titleList = feed.map((feedItem, index) => {

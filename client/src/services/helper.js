@@ -2,7 +2,7 @@
 class Request {
 
 // url in get(url) is the url that the request is trying to hit on the api side e.g /api/channels.
-// the url in fetch(url) is this same url
+// This will come from wherever we are using Request.get or Request.post etc.
     get(url) {
         return fetch("http://localhost:8080" + url)
         .then(res => res.json());

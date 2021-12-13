@@ -3,7 +3,7 @@ import ChannelList from "../components/ChannelInputComponents/ChannelList";
 import { useEffect, useState } from 'react';
 import Request from "../services/helper"
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import ChannelFeed from "../components/ChannelInputComponents/ChannelFeed";
+
 
 
 const ChannelContainer = () => {
@@ -17,6 +17,8 @@ const ChannelContainer = () => {
         .then((data) => {setSavedFeeds(data)});
         }, []);
 
+// function to post a new channel feed to the database. Gets feedUrl from ChannelInput component.
+// Goes to /channels which renders the ChannelList component, which does a GET request to the DB to retreive all saved channel feed URLs.
     const onUrlSubmit = function(feedUrl){
         const request = new Request();
         request.post("/api/channels", feedUrl)  
@@ -24,7 +26,7 @@ const ChannelContainer = () => {
     };
 
 
-    
+
     if(!savedFeeds){
         return null
     }

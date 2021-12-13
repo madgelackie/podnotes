@@ -1,14 +1,36 @@
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 
 
 const ChannelFeed = ({selectedFeed}) => {
 
-    const [selectedFeedUrl, setSelectedFeedUrl] = useState(null)
+    const [selectedFeedUrl, setSelectedFeedUrl] = useState(null);
+    const [feed, setFeed] = useState([]);
 
-    const prepForEpisodes = (selectedFeed) => {
+    useEffect(() => {
         const urlOnly = selectedFeed.channelUrl;
         setSelectedFeedUrl(urlOnly);
-    }
+    }, [])
+
+    useEffect(() => {
+        fetch(selectedFeedUrl)
+        .then(res => res.text())
+        .then(str => {
+        const parser = new window.DOMParser();
+        const data = parser.parseFromString(str, 'text/xml');
+        console.log(data);
+        const itemNodeList = data.querySelectorAll('item');
+        console.log(itemNodeList);
+        const items=[];
+        itemNodeList.forEach(item => {
+        items.push({
+        title: item.querySelector('title').innerHTML,
+        mp3: item.querySelector('enclosure').getAttribute('url'),
+                    })
+                })
+        setFeed(items);
+            }) 
+        }, [selectedFeedUrl])
+
 
     // const handleEpisodeSelect = (event) => {
     //     const chosenEpisode = feed[event.target.value];
@@ -25,7 +47,7 @@ const ChannelFeed = ({selectedFeed}) => {
     
     return(
         <div>
-            <ul>boop</ul>
+            <ul>{selectedFeed.channelUrl}</ul>
         </div>
         
     )

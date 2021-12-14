@@ -1,12 +1,12 @@
 import React from 'react';
 
-const EpisodePlayer = ({episode, onBookmarkClicked}) => {
+const EpisodePlayer = ({episode, onAddBookmarkClicked}) => {
 
 // passes bookmark detail up to ChannelFeed
     const makeBookmark = () => {
         const bookmark = document.getElementById("episode")
         bookmark.pause()
-        onBookmarkClicked({time: bookmark.currentTime})
+        onAddBookmarkClicked({time: bookmark.currentTime})
         return console.log(bookmark.currentTime)
     }
 

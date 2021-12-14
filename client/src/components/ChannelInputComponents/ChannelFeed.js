@@ -6,17 +6,18 @@ import Request from '../../services/helper';
 
 const ChannelFeed = ({selectedFeed}) => {
 
+// The 'selectedFeedUrl' State will trigger the useEffect to make the network call to the RSS server.
     const [selectedFeedUrl, setSelectedFeedUrl] = useState(null);
+// The 'feed' State will trigger the rendering of the channel episode feed in this (ChannelFeed) container, via titleList function.
     const [feed, setFeed] = useState([]);
+// The 'epsiodeToPlay' state is updated by the handleEpisodeSelect(), which is triggered in this (ChannelFeed) component. This might be an un-necessary duplicate of 'episodeDBReady'.  This state triggers the EpisodePlayer component to render.
     const [episodeToPlay, setEpisodeToPlay] = useState(null);
-    const [makeEpisodeBookmark, setMakeEpisodeBookmark] = useState([]);
-    const [episodeDBReady, setEpisodeDBReady] = useState(
-        {
-            episodeTitle: "",
-            episodeURL: "",
-            channel: null 
-        }
-    )
+// This 'episodeDBReady' triggers the useEffect which posts episode data to the database.  It is set in the 'handleEpisodeSelect() used in 'episodeToPlay' State.
+    const [episodeDBReady, setEpisodeDBReady] = useState({});
+// This 'makeEpisodeBookmark' State is set by onAddBookmarkClicked, and triggers the rendering of NoteBox.
+    const [makeEpisodeBookmark, setMakeEpisodeBookmark] = useState(null);
+// This 'episodeBookmarks' state is set by onBookmarkSave which gets the data from the NoteBox component.   
+    const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
 
     useEffect(() => {
         const urlOnly = selectedFeed.channelUrl;
@@ -53,7 +54,6 @@ const ChannelFeed = ({selectedFeed}) => {
         episodeURL: chosenEpisode.episodeURL,
         channel: selectedFeed };
         setEpisodeDBReady(newObject);
-        // onEpisodeSelect();
         }
 
     useEffect(() => {
@@ -69,25 +69,33 @@ const ChannelFeed = ({selectedFeed}) => {
         </div>
     })
 
-// hook for retreiving bookmark details from EpisodePlayer component
-    // const onBookmarkClicked = (bookmark) => {
-    //     const episodeBookmarkList = [...episodeBookmarks, bookmark];
-    //     setEpisodeBookmarks(episodeBookmarkList)
-    // }       
+// hook for retreiving bookmark details from NoteBox component
+    const onBookmarkSave = (bookmarkText, time) => {
+        const audioPlayer = document.getElementById("episode")
+        audioPlayer.play();
+        const bookmark = {
+            timestamp: time,
+            note: bookmarkText,
+            episode: episodeDBReady
+        }
+        const episodeBookmarkList = [...episodeBookmarks, bookmark];
+        setEpisodeBookmarks(episodeBookmarkList);
+        setMakeEpisodeBookmark("");
+    }       
 
-    const onBookmarkClicked = (bookmark) => {
+// CHECK THIS STILL GETTING USED
+    const onAddBookmarkClicked = (bookmark) => {
         setMakeEpisodeBookmark(bookmark)
     }    
 
-    
     return(
         <>
         <div id="feed">
             <ul>{titleList}</ul>
         </div>
         <div id="wrapper">
-        {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onBookmarkClicked={onBookmarkClicked}/>:null}
-        {makeEpisodeBookmark ? <NoteBox makeEpisodeBookmark={makeEpisodeBookmark}/>:null}
+        {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onAddBookmarkClicked={onAddBookmarkClicked}/>:null}
+        {makeEpisodeBookmark ? <NoteBox makeEpisodeBookmark={makeEpisodeBookmark} onBookmarkSave={onBookmarkSave}/>:null}
         </div>
         </>
     )

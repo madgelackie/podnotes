@@ -1,5 +1,7 @@
+import {useState} from 'react'
 
-const NoteBox = ({makeEpisodeBookmark}) => {
+
+const NoteBox = ({makeEpisodeBookmark, onBookmarkSave}) => {
 
     // const printToNoteBox = makeEpisodeBookmark.map((bookmark, index) => {
     //     return <div key={index}>
@@ -13,13 +15,31 @@ const NoteBox = ({makeEpisodeBookmark}) => {
     //     </div>
     // })
 
+    const [textUpdate, setTextUpdate] = useState(null);
+
+
+    
+    const handleChange = (event) => {
+        setTextUpdate(event.target.value)
+    }
+
+
+    const handleBookmarkSave = (event) => {
+        event.preventDefault();
+        onBookmarkSave(textUpdate, makeEpisodeBookmark.time);
+        setTextUpdate("");
+        
+    }
+
+
     return (
         <div id="note-box">
-            <form>
-            <p>Timestamp: {makeEpisodeBookmark.time}</p>
+            <form onSubmit={handleBookmarkSave}>
+            <p value={makeEpisodeBookmark}>Timestamp: {makeEpisodeBookmark.time}</p>
             <label htmlFor="writeNote" ></label>
-            <textarea id="note" name="note" rows="5" cols="100" placeholder="add note here">
+            <textarea value={textUpdate} onChange={handleChange} id="note" name="note" rows="5" cols="100" placeholder="add note here">
             </textarea>
+            <button type="submit">Save bookmark</button>
             </form>
         </div>
         

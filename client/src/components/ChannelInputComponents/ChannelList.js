@@ -20,16 +20,6 @@ const ChannelList = ({savedFeeds}) => {
         
     })
 
-    // window.location = "/channels/" + selectedFeedId;
-    // <Route exact path= "/channels/:id" render={() => {
-    //     return <ChannelFeed selectedFeedObject={selectedFeedObject} />
-    // }}/>
-    // <Route exact path="/channels/:id" render={() => {
-    //     return <ChannelFeed selectedFeed={selectedFeed} />
-    // }}/>
-
-
-
     return (
         <>
         <div>

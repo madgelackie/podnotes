@@ -7,7 +7,8 @@ const EpisodePlayer = ({episode, onAddBookmarkClicked}) => {
         const bookmark = document.getElementById("episode")
         bookmark.pause()
         onAddBookmarkClicked({time: bookmark.currentTime})
-        return console.log(bookmark.currentTime)
+        return console.log(typeof bookmark.currentTime)
+
     }
 
     return (

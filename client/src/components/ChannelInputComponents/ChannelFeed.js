@@ -16,6 +16,7 @@ const ChannelFeed = ({selectedFeed}) => {
     const [episodeDBReady, setEpisodeDBReady] = useState({});
 // This 'makeEpisodeBookmark' State is set by onAddBookmarkClicked, and triggers the rendering of NoteBox.
     const [makeEpisodeBookmark, setMakeEpisodeBookmark] = useState(null);
+    const [singleBookmark, setSingleBookmark] = useState({});
 // This 'episodeBookmarks' state is set by onBookmarkSave which gets the data from the NoteBox component.   
     const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
 
@@ -46,6 +47,16 @@ const ChannelFeed = ({selectedFeed}) => {
             }) 
         }, [selectedFeedUrl])
 
+        useEffect(() => {
+            const request = new Request();
+            request.post("/api/episodes", episodeDBReady);  
+        }, [episodeDBReady])
+
+        useEffect(() => {
+            const request = new Request();
+            request.post("/api/bookmarks", singleBookmark);
+        }, [singleBookmark])
+
 // episode selection occurs in this (ChannelFeed) component. This function also creates an Episode object ready for posting to database.
     const handleEpisodeSelect = (event) => {
         const chosenEpisode = feed[event.target.value];
@@ -55,11 +66,6 @@ const ChannelFeed = ({selectedFeed}) => {
         channel: selectedFeed };
         setEpisodeDBReady(newObject);
         }
-
-    useEffect(() => {
-        const request = new Request();
-        request.post("/api/episodes", episodeDBReady);  
-    }, [episodeDBReady])
 
 // rendering instructions for this (ChannelFeed) component.
     const titleList = feed.map((feedItem, index) => {
@@ -77,7 +83,8 @@ const ChannelFeed = ({selectedFeed}) => {
             timestamp: time,
             note: bookmarkText,
             episode: episodeDBReady
-        }
+        };
+        setSingleBookmark(bookmark);
         const episodeBookmarkList = [...episodeBookmarks, bookmark];
         setEpisodeBookmarks(episodeBookmarkList);
         setMakeEpisodeBookmark("");

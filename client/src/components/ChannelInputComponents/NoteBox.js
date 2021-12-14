@@ -15,7 +15,7 @@ const NoteBox = ({makeEpisodeBookmark, onBookmarkSave}) => {
     //     </div>
     // })
 
-    const [textUpdate, setTextUpdate] = useState(null);
+    const [textUpdate, setTextUpdate] = useState("");
 
 
     

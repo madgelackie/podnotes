@@ -14,7 +14,7 @@ const NoteBox = ({makeEpisodeBookmark}) => {
     // })
 
     return (
-        <div>
+        <div id="note-box">
             <form>
             <p>Timestamp: {makeEpisodeBookmark.time}</p>
             <label htmlFor="writeNote" ></label>

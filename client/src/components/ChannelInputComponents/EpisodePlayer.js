@@ -11,8 +11,8 @@ const EpisodePlayer = ({episode, onBookmarkClicked}) => {
     }
 
     return (
-        <div id="container-grid">
-            <div id="player">
+        <div id="player">
+            <div>
             <p>{episode.episodeTitle}</p>
             <audio id="episode" controls controlsList="nodownload" src={episode.episodeURL} autoPlay></audio>
             <button onClick={makeBookmark}>Add bookmark</button>

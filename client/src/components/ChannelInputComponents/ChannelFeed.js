@@ -1,6 +1,7 @@
 import {useEffect, useState } from 'react';
 import EpisodePlayer from './EpisodePlayer';
 import NoteBox from './NoteBox';
+import AllEpisodeNotes from './AllEpisodeNotes';
 import Request from '../../services/helper';
 
 
@@ -18,8 +19,7 @@ const ChannelFeed = ({selectedFeed}) => {
     const [makeBookmark, setMakeBookmark] = useState(null);
     const [singleBookmark, setSingleBookmark] = useState({});
 // This 'episodeBookmarks' state is set by onBookmarkSave which gets the data from the NoteBox component.   
-    const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
-    const [isUnique, setIsUnique] = useState(null);
+    
 
     useEffect(() => {
         const urlOnly = selectedFeed.channelUrl;
@@ -69,18 +69,6 @@ const ChannelFeed = ({selectedFeed}) => {
         setEpisodeDBReady(newObject);
         }
 
-    // const handleEpisodeSelect = (event) => {
-    //     const chosenEpisode = feed[event.target.value];
-    //     const request = new Request();
-    //     request.get("/api/episodes/" + chosenEpisode.episodeTitle)
-    //     .then((data) => {setIsUnique(data)})
-    //     setEpisodeToPlay(chosenEpisode);
-    //     const newObject = {episodeTitle: chosenEpisode.episodeTitle,
-    //     episodeURL: chosenEpisode.episodeURL,
-    //     channel: selectedFeed };
-    //     setEpisodeDBReady(newObject);
-    // }
-
 // rendering instructions for this (ChannelFeed) component.
     const titleList = feed.map((feedItem, index) => {
         return <div id="feed-items" key={index}>
@@ -95,25 +83,21 @@ const ChannelFeed = ({selectedFeed}) => {
         const audioPlayer = document.getElementById("episode")
         audioPlayer.play();
         setSingleBookmark(bookmarkDBReady);
-        const episodeBookmarkList = [...episodeBookmarks, bookmarkDBReady];
-        setEpisodeBookmarks(episodeBookmarkList);
         setMakeBookmark("");
     }       
 
-// CHECK THIS STILL GETTING USED
     const onAddBookmarkClicked = (bookmark) => {
         setMakeBookmark(bookmark)
     }    
 
     return(
         <>
-        <div id="feed">
+        <div class="feed">
             <ul>{titleList}</ul>
         </div>
-        <div id="wrapper">
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onAddBookmarkClicked={onAddBookmarkClicked}/>:null}
         {makeBookmark ? <NoteBox makeBookmark={makeBookmark} onBookmarkSave={onBookmarkSave} episodeDBReady={episodeDBReady}/>:null}
-        </div>
+        {singleBookmark ? <AllEpisodeNotes />: null}
         </>
     )
     

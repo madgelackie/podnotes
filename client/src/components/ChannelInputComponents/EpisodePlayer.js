@@ -12,7 +12,7 @@ const EpisodePlayer = ({episode, onAddBookmarkClicked}) => {
     }
 
     return (
-        <div id="player">
+        <div class="player">
             <div>
             <p>{episode.episodeTitle}</p>
             <audio id="episode" controls controlsList="nodownload" src={episode.episodeURL} autoPlay></audio>

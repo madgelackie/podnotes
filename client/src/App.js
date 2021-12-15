@@ -5,17 +5,20 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavBar from './components/NavBar';
 
 
+
 function App() {
 
   return (
     <Router>
+    
     <NavBar/>
       <Switch>
-        {/* <Route path="/feed" component={MainContainer}/> */}
         <Route path="/channels" component={ChannelContainer}/>
         <Route path='*' component={NotFound} />
       </Switch>
+    
     </Router>  
+    
   );
 
 }

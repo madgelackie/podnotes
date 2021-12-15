@@ -32,10 +32,11 @@ const ChannelContainer = () => {
     }
     return (
         <>
+        <div class="container-grid">
             <Route exact path= "/channels" render={() => {
                 return <ChannelList savedFeeds={savedFeeds}/> 
             }}/>
-            
+        </div>    
             <Route exact path= "/channels/new" render={() => {
                 return <ChannelInput onUrlSubmit={onUrlSubmit}/>
             }}/>

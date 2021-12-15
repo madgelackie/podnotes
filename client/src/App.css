@@ -1,10 +1,24 @@
-#container-grid {
+body::before {
+  content: "";
+  background-image: url("/Users/marionlackie/capstone_project/podnotes 22.56.38/client/src/headphones.jpg");
+  background-size: cover;
+  opacity: 0.3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
+
+.container-grid {
   display: grid;
-  grid-template-areas:
-    'feed' 'player',
-    'feed' 'note-box';
   grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 1fr 4fr 2fr;
+  grid-template-areas:
+    "nav nav"
+    "feed all-notes"
+    "player note-box";
 }
 /* 
 #nav {
@@ -15,16 +29,14 @@
   grid-area: nav;
 } */
 
-#feed{
+.feed{
+  
+  max-height: 500px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   row-gap: 10px;
   grid-area: feed;
-  position: relative;
-  top: 0;
-  height: 500px;
-  width: 50%;
   overflow: scroll; 
 }
 
@@ -52,19 +64,21 @@
   flex-direction: row;
 }
 
-#player{
+.player{
   grid-area: player;
-  height: 50%;
+  
+  /* height: 50%;
   padding-left: 50px;
-  padding-bottom: 50px;
+  padding-bottom: 50px; */
 }
 
-#note-box{
+.note-box{
     grid-area: note-box;
     padding-left: 50px;
+}
 
-    
-
+.all-notes{
+  grid-area: all-notes;
 }
 
 

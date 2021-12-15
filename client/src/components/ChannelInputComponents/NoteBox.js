@@ -38,7 +38,7 @@ const NoteBox = ({makeBookmark, onBookmarkSave, episodeDBReady}) => {
 
 
     return (
-        <div id="note-box">
+        <div class="note-box">
             <form onSubmit={handleBookmarkSave}>
             <p value={makeBookmark}>Timestamp: {makeBookmark.time}</p>
             <label htmlFor="writeNote" ></label>

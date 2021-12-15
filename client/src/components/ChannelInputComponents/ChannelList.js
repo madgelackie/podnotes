@@ -26,9 +26,9 @@ const ChannelList = ({savedFeeds}) => {
 
     return (
         <>
-        <div>
+        <div id="channel-option">
         <select onChange={handleSelect}>
-            <option>Select podcast channel</option>
+            <option id="option-content">Select podcast channel</option>
             {showList}
         </select>
         </div>

@@ -6,7 +6,7 @@ const NavBar = () => {
             <a href="/channels/new">Add new podcast channel</a>
             </li>
             <li>
-                <a href="/channels">Main listening page</a>
+                <a href="/channels">Change channel</a>
             </li>
         </ul>
         </div>

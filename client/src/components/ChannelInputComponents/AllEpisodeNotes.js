@@ -11,14 +11,14 @@ const AllEpisodeNotes = ({episodeDBReady, singleBookmark}) => {
         const request = new Request();
         request.get("/api/episodes/" + episodeDBReady.episodeTitle)
         .then((data) => {setEpisodeFromDB(data)})}
-    }, [])
+    }, [episodeDBReady])
 
     useEffect(() => {
         if (episodeDBReady){
         const request = new Request();
         request.get("/api/episodes/" + episodeDBReady.episodeTitle)
         .then((data) => {setEpisodeFromDB(data)})}
-    }, [])
+    }, [singleBookmark])
 
     console.log("What comes from ChannelFeed: ", episodeDBReady)
     console.log("This is the returned ep from DB: ", episodeFromDB)
@@ -29,11 +29,35 @@ const AllEpisodeNotes = ({episodeDBReady, singleBookmark}) => {
     //             <li value={index}>{episodeFromDB.episodeTitle}</li>
     //     </div>
     // })
+
+    // const exampleBookmark = singleBookmark.map(() => {
+
+    // })
+    // const titleList = feed.map((feedItem, index) => {
+    //     return <div id="feed-items" key={index}>
+    //             <li value={index}>{feedItem.episodeTitle} </li>
+    //             <button value={index} onClick={handleEpisodeSelect}>Listen</button>
+    //     </div>
+    // })
+
+    // const makeBookmark = () => {
+    //     const bookmark = document.getElementById("episode")
+    //     bookmark.pause()
+    //     onAddBookmarkClicked({time: bookmark.currentTime})
+    //     return console.log(typeof bookmark.currentTime)
+
+    // }
+
     
+
+    // const handleClick = () => {
+        
+    // }
 
     return (
         <div class="all-notes">
-        <p> </p>
+        <button >{singleBookmark.timestamp}</button>
+        <p>{singleBookmark.note} </p>
         </div>
     )
 }

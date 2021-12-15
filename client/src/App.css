@@ -1,3 +1,8 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: larger;
+}
+
 body::before {
   content: "";
   background-image: url("/Users/marionlackie/capstone_project/podnotes 22.56.38/client/src/headphones.jpg");
@@ -20,14 +25,10 @@ body::before {
     "feed all-notes"
     "player note-box";
 }
-/* 
-#nav {
-  background-color: green;
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  grid-area: nav;
-} */
+
+#channel-option{
+  padding-left:25px;
+}
 
 .feed{
   
@@ -46,7 +47,7 @@ body::before {
   padding-bottom: 6px;
   padding-left: 6px;
   padding-right: 6px;
-  border: 3px solid tomato;
+  border: 3px solid red;
 }
 
 /* #main{
@@ -79,6 +80,7 @@ body::before {
 
 .all-notes{
   grid-area: all-notes;
+  padding-left: 25px;
 }
 
 

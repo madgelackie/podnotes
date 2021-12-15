@@ -7,6 +7,8 @@ const NoteBox = ({makeBookmark, onBookmarkSave, episodeDBReady}) => {
     const [textUpdate, setTextUpdate] = useState("");
     const [episodeFromDB, setEpisodeFromDB] = useState([]);
 
+
+// this is needed in order to get the current episodes DB unique id number, in order to create a bookmark object in the correct form for posting to the database. 
     useEffect(() => {
         if (episodeDBReady){
         const request = new Request();

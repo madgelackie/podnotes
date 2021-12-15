@@ -53,6 +53,7 @@ const ChannelFeed = ({selectedFeed}) => {
         }, [episodeDBReady])
 
         useEffect(() => {
+            console.log(singleBookmark);
             const request = new Request();
             request.post("/api/bookmarks", singleBookmark);
         }, [singleBookmark])
@@ -82,8 +83,16 @@ const ChannelFeed = ({selectedFeed}) => {
         const bookmark = {
             timestamp: time,
             note: bookmarkText,
-            episode: episodeDBReady
+            episode: {"id": 3,
+            "episodeTitle": " Friendly federated learning 🌼 (Practical AI #160)",
+            "episodeURL": "https://chtbl.com/track/A551A9/https://cdn.changelog.com/uploads/practicalai/160/practical-ai-160.mp3",
+            "bookmarks": [],
+            "channel": {
+            "id": 3,
+            "channelUrl": "https://changelog.com/master/feed"
+        }}
         };
+        console.log("bookmark episode = ", episodeDBReady)
         setSingleBookmark(bookmark);
         const episodeBookmarkList = [...episodeBookmarks, bookmark];
         setEpisodeBookmarks(episodeBookmarkList);

@@ -14,12 +14,6 @@ const NoteBox = ({makeBookmark, onBookmarkSave, episodeDBReady}) => {
         request.get("/api/episodes/" + episodeDBReady.episodeTitle)
         .then((data) => {setEpisodeFromDB(data)})}
     }, [])
-
-    // useEffect(() => {
-    //     const request = new Request();
-    //     request.get("/api/channels")
-    //     .then((data) => {setSavedFeeds(data)});
-    //     }, []);
     
     const handleChange = (event) => {
         setTextUpdate(event.target.value)
@@ -28,7 +22,12 @@ const NoteBox = ({makeBookmark, onBookmarkSave, episodeDBReady}) => {
 
     const handleBookmarkSave = (event) => {
         event.preventDefault();
-        onBookmarkSave(textUpdate, makeBookmark.time);
+        const bookmarkDBReady = {
+            timestamp: makeBookmark.time,
+            note: textUpdate,
+            episode: episodeFromDB
+            }
+        onBookmarkSave(bookmarkDBReady);
         setTextUpdate("");
         
     }

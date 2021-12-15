@@ -1,7 +1,7 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 
-const NoteBox = ({makeEpisodeBookmark, onBookmarkSave}) => {
+const NoteBox = ({makeBookmark, onBookmarkSave}) => {
 
     // const printToNoteBox = makeEpisodeBookmark.map((bookmark, index) => {
     //     return <div key={index}>
@@ -16,8 +16,19 @@ const NoteBox = ({makeEpisodeBookmark, onBookmarkSave}) => {
     // })
 
     const [textUpdate, setTextUpdate] = useState("");
+    const [episodeFromDB, setEpisodeFromDB] = useState(null);
 
+    // useEffect(() => {
+    //     const request = new Request();
+    //     request.get("/api/episode/:")
+    //     .then((data) => {setEpisodeFromDB()})
+    // })
 
+    // useEffect(() => {
+    //     const request = new Request();
+    //     request.get("/api/channels")
+    //     .then((data) => {setSavedFeeds(data)});
+    //     }, []);
     
     const handleChange = (event) => {
         setTextUpdate(event.target.value)
@@ -26,7 +37,7 @@ const NoteBox = ({makeEpisodeBookmark, onBookmarkSave}) => {
 
     const handleBookmarkSave = (event) => {
         event.preventDefault();
-        onBookmarkSave(textUpdate, makeEpisodeBookmark.time);
+        onBookmarkSave(textUpdate, makeBookmark.time);
         setTextUpdate("");
         
     }
@@ -35,7 +46,7 @@ const NoteBox = ({makeEpisodeBookmark, onBookmarkSave}) => {
     return (
         <div id="note-box">
             <form onSubmit={handleBookmarkSave}>
-            <p value={makeEpisodeBookmark}>Timestamp: {makeEpisodeBookmark.time}</p>
+            <p value={makeBookmark}>Timestamp: {makeBookmark.time}</p>
             <label htmlFor="writeNote" ></label>
             <textarea value={textUpdate} onChange={handleChange} id="note" name="note" rows="5" cols="100" placeholder="add note here">
             </textarea>

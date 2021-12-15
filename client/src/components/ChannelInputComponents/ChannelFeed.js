@@ -14,8 +14,8 @@ const ChannelFeed = ({selectedFeed}) => {
     const [episodeToPlay, setEpisodeToPlay] = useState(null);
 // This 'episodeDBReady' triggers the useEffect which posts episode data to the database.  It is set in the 'handleEpisodeSelect() used in 'episodeToPlay' State.
     const [episodeDBReady, setEpisodeDBReady] = useState({});
-// This 'makeEpisodeBookmark' State is set by onAddBookmarkClicked, and triggers the rendering of NoteBox.
-    const [makeEpisodeBookmark, setMakeEpisodeBookmark] = useState(null);
+// This 'makeBookmark' State is set by onAddBookmarkClicked, and triggers the rendering of NoteBox.
+    const [makeBookmark, setMakeBookmark] = useState(null);
     const [singleBookmark, setSingleBookmark] = useState({});
 // This 'episodeBookmarks' state is set by onBookmarkSave which gets the data from the NoteBox component.   
     const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
@@ -96,12 +96,12 @@ const ChannelFeed = ({selectedFeed}) => {
         setSingleBookmark(bookmark);
         const episodeBookmarkList = [...episodeBookmarks, bookmark];
         setEpisodeBookmarks(episodeBookmarkList);
-        setMakeEpisodeBookmark("");
+        setMakeBookmark("");
     }       
 
 // CHECK THIS STILL GETTING USED
     const onAddBookmarkClicked = (bookmark) => {
-        setMakeEpisodeBookmark(bookmark)
+        setMakeBookmark(bookmark)
     }    
 
     return(
@@ -111,7 +111,7 @@ const ChannelFeed = ({selectedFeed}) => {
         </div>
         <div id="wrapper">
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onAddBookmarkClicked={onAddBookmarkClicked}/>:null}
-        {makeEpisodeBookmark ? <NoteBox makeEpisodeBookmark={makeEpisodeBookmark} onBookmarkSave={onBookmarkSave}/>:null}
+        {makeBookmark ? <NoteBox makeBookmark={makeBookmark} onBookmarkSave={onBookmarkSave}/>:null}
         </div>
         </>
     )

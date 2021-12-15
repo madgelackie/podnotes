@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 
 
-const NoteBox = ({makeBookmark, onBookmarkSave}) => {
+const NoteBox = ({makeBookmark, onBookmarkSave, episode}) => {
 
     // const printToNoteBox = makeEpisodeBookmark.map((bookmark, index) => {
     //     return <div key={index}>
@@ -20,7 +20,7 @@ const NoteBox = ({makeBookmark, onBookmarkSave}) => {
 
     // useEffect(() => {
     //     const request = new Request();
-    //     request.get("/api/episode/:")
+    //     request.get("/api/episode/:title")
     //     .then((data) => {setEpisodeFromDB()})
     // })
 

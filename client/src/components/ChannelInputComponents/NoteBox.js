@@ -10,7 +10,6 @@ const NoteBox = ({makeBookmark, onBookmarkSave, episodeDBReady}) => {
     useEffect(() => {
         if (episodeDBReady){
         const request = new Request();
-        console.log(episodeDBReady.episodeTitle);
         request.get("/api/episodes/" + episodeDBReady.episodeTitle)
         .then((data) => {setEpisodeFromDB(data)})}
     }, [])
@@ -19,13 +18,18 @@ const NoteBox = ({makeBookmark, onBookmarkSave, episodeDBReady}) => {
         setTextUpdate(event.target.value)
     }
 
-
+// bookmark info sent up to ChannelFeed, where it is then posted to the DB
     const handleBookmarkSave = (event) => {
         event.preventDefault();
+        console.log(episodeFromDB.id)
         const bookmarkDBReady = {
             timestamp: makeBookmark.time,
             note: textUpdate,
-            episode: episodeFromDB
+            episode: {
+                id: episodeFromDB.id,
+                episodeURL: episodeDBReady.episodeURL,
+                episodeTitle: episodeDBReady.episodeTitle
+            }
             }
         onBookmarkSave(bookmarkDBReady);
         setTextUpdate("");

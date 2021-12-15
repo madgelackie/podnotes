@@ -14,7 +14,7 @@ const ChannelContainer = () => {
     const [savedFeeds, setSavedFeeds] = useState([]);
 
 
-// this function is making a request to the api, and the resposne is used to set the state savedFeeds 
+// this function is making a request to the api, and the response is used to set the state savedFeeds. savedFeeds is then rendered by ChannelList.
     useEffect(() => {
         const request = new Request();
         request.get("/api/channels")
@@ -34,6 +34,7 @@ const ChannelContainer = () => {
     }
 
     useEffect(()=>{
+        if (feedUrl){
         fetch(feedUrl)
         .then(res => res.text())
         .then(str => {
@@ -47,22 +48,27 @@ const ChannelContainer = () => {
                 })
             })
             setChannelTitle(channelTitle)
+            console.log(channelTitle)
             })
-            }, [feedUrl])
+    }}, [])
 
-    const createChannelObject = () => {
-        const channelObject = {
-        channelUrl: feedUrl,
-        channelTitle: channelTitle[0]
-        }
-        setChannelObject(channelObject)
-    }
+    // const createChannelObject = () => {
+    //     const channelObject = {
+    //     channelUrl: feedUrl,
+    //     channelTitle: channelTitle[0]
+    //     }
+    //     setChannelObject(channelObject)
+    // }
 
     useEffect(() => {
+            const channelObject = {
+                channelUrl: feedUrl,
+                channelTitle: channelTitle[0]
+            }
         const request = new Request();
-        request.post("/api/channels", feedUrl)  
+        request.post("/api/channels", channelObject)  
         .then(() => window.location = "/channels")
-        }, [channelObject])
+        }, [channelTitle])
 
     if(!savedFeeds){
         return null

@@ -57,8 +57,6 @@ const ChannelFeed = ({selectedFeed}) => {
             console.log(singleBookmark);
             const request = new Request();
             request.post("/api/bookmarks", singleBookmark);
-            request.get("/api/episodes/" + episodeDBReady.episodeTitle)
-            .then((data) => {setEpisodeAfterBookmarkPost(data)})
         }, [singleBookmark])
 
 // episode selection occurs in this (ChannelFeed) component. This function also creates an Episode object ready for posting to database.
@@ -99,7 +97,7 @@ const ChannelFeed = ({selectedFeed}) => {
         </div>
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onAddBookmarkClicked={onAddBookmarkClicked}/>:null}
         {makeBookmark ? <NoteBox makeBookmark={makeBookmark} onBookmarkSave={onBookmarkSave} episodeDBReady={episodeDBReady}/>:null}
-        {singleBookmark ? <AllEpisodeNotes episodeDBReady={episodeDBReady}/>: null}
+        {/* {singleBookmark ? <AllEpisodeNotes episode={episodeAfterBookmarkPost}/>: null} */}
         </>
     )
     

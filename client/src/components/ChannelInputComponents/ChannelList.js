@@ -12,18 +12,25 @@ const ChannelList = ({savedFeeds}) => {
         // window.location = "/channels/" + chosenFeed.id;
     } 
 
+    // const showList = savedFeeds.map((feed, index) => {
+    //     return <div key={index}>
+    //         <li>{feed.channelUrl}</li>
+    //         <button value={index} onClick={handleSelect}>Select</button>
+    //         </div>     
+    // })
+
     const showList = savedFeeds.map((feed, index) => {
-        return <div key={index}>
-            <li>{feed.channelUrl}</li>
-            <button value={index} onClick={handleSelect}>Select</button>
-            </div>
-        
+        return <option key={index} value={index}>{feed.channelUrl}</option>
+            
     })
 
     return (
         <>
         <div>
-        <ul>{showList}</ul>
+        <select onChange={handleSelect}>
+            <option>Select podcast channel</option>
+            {showList}
+        </select>
         </div>
         {selectedFeed ? <ChannelFeed selectedFeed={selectedFeed}/>:null}
         </>

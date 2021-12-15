@@ -81,6 +81,11 @@ body::before {
 .all-notes{
   grid-area: all-notes;
   padding-left: 25px;
+  border: solid 1px black;
+  background-color: white;
+  max-height: 70px;
+  max-width: 80%;
+  margin: 25px;
 }
 
 

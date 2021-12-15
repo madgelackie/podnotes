@@ -1,25 +1,33 @@
-// import {useState, useEffect} from 'react';
-// import Request from '../../services/helper';
+import {useState, useEffect} from 'react';
+import Request from '../../services/helper';
 
-// const AllEpisodeNotes = ({episode}) => {
+const AllEpisodeNotes = ({episodeDBReady, singleBookmark}) => {
 
-//     const [episodeFromDB, setEpisodeFromDB] = useState(null);
+    const [episodeFromDB, setEpisodeFromDB] = useState(null);
     
-//     // useEffect(() => {
-//     //     if (episodeDBReady){
-//     //     const request = new Request();
-//     //     request.get("/api/episodes/" + episodeDBReady.episodeTitle)
-//     //     .then((data) => {setEpisodeFromDB(data)})}
-//     // }, [])
+    useEffect(() => {
+        if (episodeDBReady){
+        const request = new Request();
+        request.get("/api/episodes/" + episodeDBReady.episodeTitle)
+        .then((data) => {setEpisodeFromDB(data)})}
+    }, [episodeDBReady])
 
-//     const noteList = episode.bookmarks
-//     console.log(episode)
+    useEffect(() => {
+        if (episodeDBReady){
+        const request = new Request();
+        request.get("/api/episodes/" + episodeDBReady.episodeTitle)
+        .then((data) => {setEpisodeFromDB(data)})}
+    }, [singleBookmark])
 
-//     return (
-//         <div class="all-notes">
-//         <p>boop</p>
-//         </div>
-//     )
-// }
+    console.log("What comes from ChannelFeed: ", episodeDBReady)
+    console.log("This is the returned ep from DB: ", episodeFromDB)
+    
 
-// export default AllEpisodeNotes;
+    return (
+        <div class="all-notes">
+        <p>boop</p>
+        </div>
+    )
+}
+
+export default AllEpisodeNotes;

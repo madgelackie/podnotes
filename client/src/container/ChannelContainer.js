@@ -10,6 +10,7 @@ const ChannelContainer = () => {
 
     const [feedUrl, setFeedUrl] = useState([]);
     const [channelTitle, setChannelTitle] = useState([]);
+    const [channelObject, setChannelObject] = useState({});
     const [savedFeeds, setSavedFeeds] = useState([]);
 
 
@@ -30,9 +31,6 @@ const ChannelContainer = () => {
 
     const onUrlSubmit = (feedUrl)=>{
         setFeedUrl(feedUrl)
-        // const request = new Request();
-        // request.post("/api/channels", feedUrl)  
-        // .then(() => window.location = "/channels")
     }
 
     useEffect(()=>{
@@ -52,27 +50,19 @@ const ChannelContainer = () => {
             })
             }, [feedUrl])
 
-    // useEffect(() => {
-        // fetch(selectedFeedUrl)
-        // .then(res => res.text())
-        // .then(str => {
-        // const parser = new window.DOMParser();
-        // const data = parser.parseFromString(str, 'text/xml');
-        // console.log(data);
-        // const getTitle = data.querySelector('title');
-        // console.log(getTitle);
-        // const itemNodeList = data.querySelectorAll('item');
-        // console.log(itemNodeList);
-        // const items=[];
-        // itemNodeList.forEach(item => {
-        // items.push({
-        // episodeTitle: item.querySelector('title').innerHTML,
-        // episodeURL: item.querySelector('enclosure').getAttribute('url'),
-        //             })
-        //         })
-        // setFeed(items);
-        //     }) 
-        // }, [selectedFeedUrl])
+    const createChannelObject = () => {
+        const channelObject = {
+        channelUrl: feedUrl,
+        channelTitle: channelTitle[0]
+        }
+        setChannelObject(channelObject)
+    }
+
+    useEffect(() => {
+        const request = new Request();
+        request.post("/api/channels", feedUrl)  
+        .then(() => window.location = "/channels")
+        }, [channelObject])
 
     if(!savedFeeds){
         return null

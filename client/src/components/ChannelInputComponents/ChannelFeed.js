@@ -19,6 +19,7 @@ const ChannelFeed = ({selectedFeed}) => {
     const [singleBookmark, setSingleBookmark] = useState({});
 // This 'episodeBookmarks' state is set by onBookmarkSave which gets the data from the NoteBox component.   
     const [episodeBookmarks, setEpisodeBookmarks] = useState([]);
+    const [isUnique, setIsUnique] = useState(null);
 
     useEffect(() => {
         const urlOnly = selectedFeed.channelUrl;
@@ -67,6 +68,18 @@ const ChannelFeed = ({selectedFeed}) => {
         channel: selectedFeed };
         setEpisodeDBReady(newObject);
         }
+
+    // const handleEpisodeSelect = (event) => {
+    //     const chosenEpisode = feed[event.target.value];
+    //     const request = new Request();
+    //     request.get("/api/episodes/" + chosenEpisode.episodeTitle)
+    //     .then((data) => {setIsUnique(data)})
+    //     setEpisodeToPlay(chosenEpisode);
+    //     const newObject = {episodeTitle: chosenEpisode.episodeTitle,
+    //     episodeURL: chosenEpisode.episodeURL,
+    //     channel: selectedFeed };
+    //     setEpisodeDBReady(newObject);
+    // }
 
 // rendering instructions for this (ChannelFeed) component.
     const titleList = feed.map((feedItem, index) => {

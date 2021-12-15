@@ -11,7 +11,7 @@ const ChannelFeed = ({selectedFeed}) => {
 // The 'feed' State will trigger the rendering of the channel episode feed in this (ChannelFeed) container, via titleList function.
     const [feed, setFeed] = useState([]);
 // The 'epsiodeToPlay' state is updated by the handleEpisodeSelect(), which is triggered in this (ChannelFeed) component. This might be an un-necessary duplicate of 'episodeDBReady'.  This state triggers the EpisodePlayer component to render.
-    const [episodeToPlay, setEpisodeToPlay] = useState(null);
+    const [episodeToPlay, setEpisodeToPlay] = useState({});
 // This 'episodeDBReady' triggers the useEffect which posts episode data to the database.  It is set in the 'handleEpisodeSelect() used in 'episodeToPlay' State.
     const [episodeDBReady, setEpisodeDBReady] = useState({});
 // This 'makeEpisodeBookmark' State is set by onAddBookmarkClicked, and triggers the rendering of NoteBox.
@@ -52,10 +52,10 @@ const ChannelFeed = ({selectedFeed}) => {
             request.post("/api/episodes", episodeDBReady);  
         }, [episodeDBReady])
 
-        useEffect(() => {
-            const request = new Request();
-            request.post("/api/bookmarks", singleBookmark);
-        }, [singleBookmark])
+        // useEffect(() => {
+        //     const request = new Request();
+        //     request.post("/api/bookmarks", singleBookmark);
+        // }, [singleBookmark])
 
 // episode selection occurs in this (ChannelFeed) component. This function also creates an Episode object ready for posting to database.
     const handleEpisodeSelect = (event) => {
@@ -85,12 +85,13 @@ const ChannelFeed = ({selectedFeed}) => {
             episode: episodeDBReady
         };
         setSingleBookmark(bookmark);
+        const request = new Request();
+        request.post("/api/bookmarks", singleBookmark);
         const episodeBookmarkList = [...episodeBookmarks, bookmark];
         setEpisodeBookmarks(episodeBookmarkList);
         setMakeEpisodeBookmark("");
     }       
 
-// CHECK THIS STILL GETTING USED
     const onAddBookmarkClicked = (bookmark) => {
         setMakeEpisodeBookmark(bookmark)
     }    

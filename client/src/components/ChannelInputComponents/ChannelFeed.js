@@ -111,7 +111,7 @@ const ChannelFeed = ({selectedFeed}) => {
         </div>
         <div id="wrapper">
         {episodeToPlay ? <EpisodePlayer episode={episodeToPlay} onAddBookmarkClicked={onAddBookmarkClicked}/>:null}
-        {makeBookmark ? <NoteBox makeBookmark={makeBookmark} onBookmarkSave={onBookmarkSave} episode={episodeDBReady}/>:null}
+        {makeBookmark ? <NoteBox makeBookmark={makeBookmark} onBookmarkSave={onBookmarkSave} episodeDBReady={episodeDBReady}/>:null}
         </div>
         </>
     )

@@ -1,28 +1,19 @@
 import {useEffect, useState} from 'react'
+import Request from '../../services/helper';
 
 
-const NoteBox = ({makeBookmark, onBookmarkSave, episode}) => {
-
-    // const printToNoteBox = makeEpisodeBookmark.map((bookmark, index) => {
-    //     return <div key={index}>
-    //         <form>
-    //         <li value={index}>{bookmark.time}: {bookmark.title}</li>
-    //         <label htmlFor="writeNote" ></label>
-    //         <textarea id="note" name="note" rows="5" cols="100" placeholder="add note here">
-
-    //         </textarea>
-    //         </form>
-    //     </div>
-    // })
+const NoteBox = ({makeBookmark, onBookmarkSave, episodeDBReady}) => {
 
     const [textUpdate, setTextUpdate] = useState("");
-    const [episodeFromDB, setEpisodeFromDB] = useState(null);
+    const [episodeFromDB, setEpisodeFromDB] = useState([]);
 
-    // useEffect(() => {
-    //     const request = new Request();
-    //     request.get("/api/episode/:title")
-    //     .then((data) => {setEpisodeFromDB()})
-    // })
+    useEffect(() => {
+        if (episodeDBReady){
+        const request = new Request();
+        console.log(episodeDBReady.episodeTitle);
+        request.get("/api/episodes/" + episodeDBReady.episodeTitle)
+        .then((data) => {setEpisodeFromDB(data)})}
+    }, [])
 
     // useEffect(() => {
     //     const request = new Request();

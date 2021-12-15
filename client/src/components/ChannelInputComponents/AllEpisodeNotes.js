@@ -50,13 +50,14 @@ const AllEpisodeNotes = ({episodeDBReady, singleBookmark}) => {
 
     
 
-    // const handleClick = () => {
-        
-    // }
+    const handleClick = () => {
+        const goToTime = document.getElementById("episode")
+        goToTime.currentTime = singleBookmark.timestamp
+    }
 
     return (
         <div class="all-notes">
-        <button >{singleBookmark.timestamp}</button>
+        <button onClick={handleClick}>{singleBookmark.timestamp}</button>
         <p>{singleBookmark.note} </p>
         </div>
     )

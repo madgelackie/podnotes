@@ -5,8 +5,9 @@ body {
 
 body::before {
   content: "";
-  background-image: url("/Users/marionlackie/capstone_project/podnotes 22.56.38/client/src/headphones.jpg");
-  background-size: cover;
+  /* background-image: url("/Users/marionlackie/capstone_project/podnotes 22.56.38/client/src/headphones.jpg"); */
+  /* background-size: cover; */
+  background-color: rgba(255, 248, 44, 0.934);
   opacity: 0.3;
   top: 0;
   bottom: 0;
@@ -83,9 +84,11 @@ body::before {
   padding-left: 25px;
   border: solid 1px black;
   background-color: white;
-  max-height: 70px;
+  max-height: 500px;
   max-width: 80%;
   margin: 25px;
+  font: smaller;
+  font-family: 'Source Code Pro', monospace;
 }
 
 

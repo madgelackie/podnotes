@@ -9,6 +9,7 @@ const NoteBox = ({makeBookmark, onBookmarkSave, episodeDBReady}) => {
 
 
 // this is needed in order to get the current episodes DB unique id number, in order to create a bookmark object in the correct form for posting to the database. 
+// Could swap this useEffect/if for ? await possibly.
     useEffect(() => {
         if (episodeDBReady){
         const request = new Request();

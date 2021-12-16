@@ -4,7 +4,7 @@ import Request from '../../services/helper';
 const AllEpisodeNotes = ({episodeDBReady, singleBookmark}) => {
 
     const [episodeFromDB, setEpisodeFromDB] = useState(null);
-    const [epBookmarks, setEpBookmarks] = useState([]);
+   
     
     useEffect(() => {
         if (episodeDBReady){

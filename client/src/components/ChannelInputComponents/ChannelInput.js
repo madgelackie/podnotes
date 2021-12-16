@@ -25,7 +25,6 @@ const ChannelInput = ({onUrlSubmit}) => {
             <input 
             type="url" 
             id="rss-url" 
-            
             onChange={handleUrlChange}
             /><br></br>
             <button id="submit" type="submit" value="Submit">Save</button>
